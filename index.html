@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shree Agency Billing</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#1f2937}
+header{background:#fff;color:#111827;padding:18px 24px;box-shadow:0 2px 8px #00000012;display:flex;justify-content:space-between;align-items:center;gap:16px}
+header h1{margin:0;font-size:25px;color:#000}header small{opacity:.9;color:#334155}.wrap{max-width:1400px;margin:20px auto;padding:0 16px}
+.tabs{display:none!important;display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.tabs button,.btn{border:0;border-radius:8px;padding:10px 14px;cursor:pointer;background:#2563eb;color:#fff;font-weight:600}.tabs button.secondary,.btn.secondary{background:#64748b}.btn.green{background:#15803d}.btn.red{background:#b91c1c}.btn.orange{background:#c2410c}.tabs button.active{background:#111827}
+.agency-logo{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fbbf24,#f97316);color:#172554;font-size:22px;font-weight:900;border:3px solid #fff;box-shadow:0 2px 8px #0003}.welcome{background:linear-gradient(120deg,#172554,#1d4ed8);color:white;text-align:center;padding:34px}.welcome h2{font-size:30px;margin:8px}.welcome .agency-logo{margin:0 auto 12px;width:76px;height:76px;font-size:28px}.welcome-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px}.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 10px #00000010;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}input,select{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:7px;background:#fff}
+.searchbar{display:flex;gap:8px;margin-bottom:12px}.searchbar input{flex:1}
+.products.retail-horizontal{display:flex;flex-direction:column;overflow:visible;align-items:stretch;padding-bottom:8px}.products.retail-horizontal .product{flex:1 1 auto;width:100%;max-width:none}.products{display:flex;flex-direction:column;flex-wrap:nowrap;gap:12px;overflow:visible;align-items:stretch;padding-bottom:8px}.products>.product{flex:1 1 auto;width:100%;max-width:none}.products.search-results-vertical{display:flex;flex-direction:column;grid-template-columns:1fr}.products.search-results-vertical .product{display:grid;grid-template-columns:90px minmax(0,1fr) auto;align-items:center;gap:4px 12px}.products.search-results-vertical .product img{grid-row:1/6;width:90px;height:90px}.products.search-results-vertical .product h3,.products.search-results-vertical .product .muted,.products.search-results-vertical .product .price,.products.search-results-vertical .product .stock,.products.search-results-vertical .product .actions{margin:0}.product .price{display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-size:14px;letter-spacing:0}.product .price span{display:block;white-space:normal}.product .actions{grid-column:3;grid-row:1/6;align-self:center}.agency-footer{padding:18px 16px;color:#334155;background:#e2e8f0;border-radius:10px;margin:16px 0}.footer-brand{text-align:center;font-size:16px;margin-bottom:12px}.footer-details{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:center}.footer-item{display:flex;gap:8px;align-items:center;min-width:0;overflow-wrap:anywhere}.footer-address{justify-content:flex-start;text-align:left}.footer-email{justify-content:center;text-align:center}.footer-contact{justify-content:flex-end;text-align:right}.footer-icon{width:36px;height:36px;border-radius:12px;display:inline-grid;place-items:center;font-size:20px;font-weight:800;flex:0 0 36px;color:#fff;background:linear-gradient(135deg,#2563eb,#1e40af);box-shadow:0 4px 10px #1e40af33}.email-icon{background:linear-gradient(135deg,#0f766e,#0d9488)}.phone-icon{background:linear-gradient(135deg,#c2410c,#f97316)}body.hide-mfg .mfg-col,body.hide-exp .exp-col{display:none!important}@media(max-width:650px){.footer-details{grid-template-columns:1fr;gap:9px}.footer-address,.footer-email,.footer-contact{justify-content:flex-start;text-align:left}}.p-faint{color:#94a3b8!important;font-weight:500!important;font-size:12px!important}.products-scroll,#adminProductMatches,#rtProducts,#adminStockTableWrap{max-height:560px;overflow-y:auto;overflow-x:hidden;padding:4px 8px 8px 2px;overscroll-behavior:contain}#adminBilling #adminBillCart{max-height:420px;overflow:auto;overscroll-behavior:contain}#adminBilling #adminBillCart thead th{position:sticky;top:0;z-index:2}#cartPageItems{max-height:70vh;overflow:auto;-webkit-overflow-scrolling:touch}#adminBilling #adminProductMatches{display:block;max-height:560px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}#adminBilling #adminBillCart{max-height:420px;overflow:auto;-webkit-overflow-scrolling:touch}.color-black-btn{padding:6px 9px;margin:4px 0 0;border:1px solid #111;border-radius:6px;background:#111;color:#fff;font-size:11px;cursor:pointer}.invoice-overview-live{display:grid;grid-template-columns:2fr minmax(260px,1fr);gap:16px;align-items:start;margin:12px 0;padding:10px;border-top:1px solid #cbd5e1;border-bottom:1px solid #cbd5e1}.invoice-meta-live{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;font-size:13px;text-align:left}.invoice-meta-live b{display:block}.invoice-meta-live .invoice-field{display:flex;flex-direction:column;gap:5px}.invoice-meta-live .invoice-field span{overflow-wrap:anywhere}.customer-meta-live{display:flex;flex-direction:column;gap:8px;font-size:13px}.customer-info-line{display:grid;grid-template-columns:1.5fr 1fr;gap:10px}.customer-info-line span{min-width:0;overflow-wrap:anywhere}.customer-meta-live b{display:inline}.invoice-info-line{display:grid;grid-template-columns:1fr 1fr;gap:8px}.invoice-meta-live .invoice-info-line{justify-items:start}.invoice-meta-live .invoice-info-line:last-child{display:block;text-align:left}@media(max-width:650px){.invoice-overview-live{grid-template-columns:1fr 1fr}.invoice-info-line{grid-template-columns:1fr}.invoice-meta-live,.customer-meta-live{min-width:0}.invoice-meta-live{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.invoice-meta-live .invoice-field{font-size:11px}}.cart-jump{position:sticky;top:8px;z-index:4}.bill-grand-row{background:#eff6ff;font-weight:800}.profit-summary{padding:12px;background:#ecfdf5;border:1px solid #bbf7d0;border-radius:8px;margin:12px 0;font-weight:700;color:#166534}.category-block{border:1px solid #dbe3ee;border-radius:10px;margin:12px 0;background:#fff;overflow:hidden}.category-toggle,.company-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border:0;background:#f1f5f9;color:#172554;font-weight:700;text-align:left;cursor:pointer}.company-toggle{background:#fff;border:1px solid #e2e8f0;border-radius:8px;margin:8px 0}.category-content{padding:8px 12px 12px}.company-content{padding:4px 0 12px}.company-name{font-weight:700}.admin-bill-products{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:end}.profit{color:#166534;font-weight:700}.product{border:1px solid #e2e8f0;border-radius:10px;padding:10px;background:#fff}.product img{width:100%;height:120px;object-fit:contain;background:#f8fafc;border-radius:7px}.product h3{font-size:15px;margin:8px 0 4px}.product .detail-line{display:block;margin-top:2px}.product .price-line{display:block;line-height:1.35}.product .rate-line{display:block}.muted{color:#64748b;font-size:12px}.price{font-weight:700;margin:4px 0}.stock{font-size:12px;font-weight:700}.negative{color:#b91c1c}.low{color:#c2410c}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;font-size:13px;vertical-align:middle}th{background:#f8fafc}.tablewrap{overflow:auto}
+.qty{display:flex;align-items:center;gap:5px}.qty button{border:0;border-radius:5px;padding:4px 8px;cursor:pointer;background:#e2e8f0}.qty input{width:58px;text-align:center;padding:6px}
+.billhead{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid #111827;padding-bottom:12px;margin-bottom:12px}.billhead h2{margin:0}.right{text-align:right}.totals{margin-left:auto;width:360px;max-width:100%}.totals div{display:flex;justify-content:space-between;padding:5px}.grand{font-size:18px;font-weight:800;border-top:2px solid #111827;margin-top:5px;padding-top:8px!important}
+.notice{padding:10px;border-radius:8px;background:#eff6ff;margin-bottom:12px}.error{background:#fee2e2;color:#991b1b}.success{background:#dcfce7;color:#166534}
+.hidden{display:none!important}.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:#fff;padding:16px;border-radius:10px}.stat b{font-size:25px;display:block;margin-top:4px}
+.direct-save-hidden{display:none!important}.cart-page-modal{z-index:40}.cart-page-box{width:min(1250px,100%);max-height:96vh}.cart-page-actions{position:sticky;bottom:0;background:#fff;padding:12px 0;margin-top:12px;border-top:1px solid #e2e8f0}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}#addQtyModal{z-index:50}.modal.show{display:flex}.modalbox{background:#fff;border-radius:12px;width:min(1100px,100%);max-height:92vh;overflow:auto;padding:18px}.modalhead{display:flex;justify-content:space-between;align-items:center}
+@media(max-width:900px){.grid,.statgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.grid,.grid2,.statgrid{grid-template-columns:1fr}header{display:block}.totals{width:100%}}
+@media print{body{background:#fff}.no-print{display:none!important}.wrap{max-width:none;margin:0}.card{box-shadow:none;padding:0}.print-area{display:block}}
+@media(max-width:600px){body{padding:0}header{padding:12px;display:flex;flex-wrap:wrap;gap:8px}.wrap{padding:10px;margin:0}.card{padding:12px}.grid,.grid2,.statgrid{grid-template-columns:minmax(0,1fr)}input,select,textarea,button{max-width:100%;font-size:16px}.actions .btn{flex:1 1 auto}.tablewrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.tablewrap table{min-width:720px}.layout{display:block}.total{width:100%;max-width:100%;margin-top:14px}.left{min-width:0}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:380px){.products{grid-template-columns:1fr}}
+@media(max-width:600px){header h1{font-size:20px}.welcome{padding:24px 14px}.welcome h2{font-size:23px}.billhead{flex-direction:column}.billhead .right{text-align:left}.modal{padding:8px}.modalbox{padding:12px;max-height:96vh}.actions{gap:8px}.actions .btn{min-width:calc(50% - 8px)}.product{width:100%;min-width:0}.products.search-results-vertical .product{grid-template-columns:72px minmax(0,1fr);}.products.search-results-vertical .product img{width:72px;height:72px;grid-row:1/5}.products.search-results-vertical .product .actions{grid-column:2;grid-row:auto}.footer-details{grid-template-columns:1fr}.footer-item{justify-content:flex-start!important;text-align:left!important}.agency-footer{padding:14px}}
+@media(hover:none){button,.btn{min-height:42px}input,select{min-height:42px}} 
+
+/* Responsive layout refinements for phones, tablets and desktop */
+html{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{width:100%;min-width:320px;overflow-x:hidden}
+img,video,canvas,svg{max-width:100%}
+.wrap,header,.card,.modalbox,.cart-page-box{min-width:0}
+.grid,.grid2,.statgrid,.products,.footer-details,.invoice-overview-live,.admin-bill-products{min-width:0}
+input,select,textarea,button{font:inherit;max-width:100%}
+input,select,textarea{min-width:0}
+.tablewrap,#cartPageItems,.products-scroll,#adminProductMatches,#rtProducts,#adminStockTableWrap{max-width:100%;overscroll-behavior-x:contain}
+.tablewrap{width:100%;overflow-x:auto;touch-action:pan-x pan-y}
+.tablewrap table{width:100%;min-width:680px}
+.modal{overflow-y:auto;align-items:center}
+.modalbox{width:min(1100px,100%);overflow:auto;-webkit-overflow-scrolling:touch}
+.cart-page-box{width:min(1250px,100%)}
+.product,.category-block,.company-content{min-width:0;overflow-wrap:anywhere}
+.product img{max-width:100%}
+.searchbar{min-width:0;align-items:stretch}
+.searchbar>*{min-width:0}
+@media(max-width:1024px){
+ .wrap{max-width:100%;margin:12px auto;padding:0 12px}
+ header{padding:14px 16px}
+ .card{padding:15px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .admin-bill-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .invoice-overview-live{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .footer-details{gap:10px}
+}
+@media(max-width:768px){
+ header{align-items:flex-start;flex-direction:column;gap:8px}
+ header>div{max-width:100%;min-width:0}
+ header small{display:block;overflow-wrap:anywhere;line-height:1.45}
+ .wrap{padding:0 10px;margin:10px auto}
+ .card{padding:12px;border-radius:10px}
+ .grid,.grid2,.statgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .searchbar{flex-wrap:wrap}
+ .searchbar input{flex:1 1 180px}
+ .searchbar button{flex:0 0 auto}
+ .admin-bill-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .billhead{flex-wrap:wrap}
+ .billhead .right{text-align:left}
+ .totals{width:100%;max-width:100%}
+ .invoice-overview-live{grid-template-columns:1fr;gap:10px}
+ .invoice-meta-live{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ .customer-info-line{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .footer-details{grid-template-columns:1fr;gap:10px}
+ .footer-address,.footer-email,.footer-contact{justify-content:flex-start;text-align:left}
+ .modal{padding:10px;align-items:flex-start}
+ .modalbox{margin:auto 0;max-height:calc(100dvh - 20px);padding:14px}
+ .cart-page-box{max-height:calc(100dvh - 20px)}
+ .cart-page-actions{padding-bottom:max(12px,env(safe-area-inset-bottom))}
+}
+@media(max-width:480px){
+ body{font-size:14px}
+ header{padding:11px 12px}
+ header h1{font-size:19px;line-height:1.2}
+ header .agency-logo{width:46px;height:46px;flex:0 0 46px}
+ .wrap{padding:0 8px;margin:8px auto}
+ .card{padding:10px;margin-bottom:10px}
+ .grid,.grid2,.statgrid{grid-template-columns:minmax(0,1fr);gap:8px}
+ .welcome{padding:20px 12px}
+ .welcome h2{font-size:22px}
+ .products{gap:9px}
+ .products.search-results-vertical .product{grid-template-columns:64px minmax(0,1fr);gap:5px 9px;padding:8px}
+ .products.search-results-vertical .product img{width:64px;height:64px;grid-row:1/5}
+ .products.search-results-vertical .product .actions{grid-column:2;grid-row:auto}
+ .product img{height:100px}
+ .product .actions{grid-column:1/-1;display:flex;flex-wrap:wrap}
+ .product .actions .btn{flex:1 1 auto}
+ .admin-bill-products{grid-template-columns:minmax(0,1fr)}
+ .invoice-meta-live{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;font-size:11px}
+ .invoice-meta-live .invoice-field{font-size:10px;overflow-wrap:anywhere}
+ .customer-info-line{grid-template-columns:minmax(0,1fr)}
+ .searchbar{gap:6px}
+ .searchbar input{flex:1 1 100%;width:100%}
+ .searchbar button{flex:1 1 auto}
+ .tabs{gap:6px}
+ .tabs button,.btn{padding:10px 11px}
+ .actions .btn{min-width:calc(50% - 5px)}
+ .qty input{width:54px}
+ .tablewrap table{min-width:650px}
+ .modalbox{padding:10px;border-radius:10px}
+ .modalhead{gap:8px;align-items:flex-start}
+ .agency-footer{padding:12px}
+}
+@media(max-width:360px){
+ .invoice-meta-live{grid-template-columns:1fr 1fr}
+ .invoice-meta-live .invoice-field:last-child{grid-column:1/-1}
+ .actions .btn{min-width:100%}
+}
+@media(orientation:landscape) and (max-height:500px) and (max-width:900px){
+ .modal{align-items:flex-start;padding:6px}
+ .modalbox{max-height:calc(100dvh - 12px)}
+ .cart-page-box{max-height:calc(100dvh - 12px)}
+}
+@media(hover:none){button,.btn{min-height:44px}input,select,textarea{min-height:42px}}
+
+</style>
+</head>
+<body>
+<header>
+  <div style="display:flex;align-items:center;gap:14px"><div class="agency-logo">SA</div><div><h1 id="agencyHeaderName">SHREE AGENCY</h1><small id="agencyHeaderDetails">Shingnapur, Tal. Man, Dist. Satara, Maharashtra · Mobile: 9423362646</small></div></div>
+  <div><b>Billing System</b></div>
+</header>
+<div class="wrap">
+  <section id="welcomePage" class="card welcome">
+    <div class="agency-logo">SA</div><h2 id="welcomeAgencyTitle">Welcome to Shree Agency</h2>
+    <p><b>Billing &amp; Login Portal</b></p><p id="welcomeQuoteText" style="max-width:760px;margin:10px auto;line-height:1.6">“Your trust is our strength. Quality products, transparent billing and service you can count on — every time.”</p><div class="welcome-actions"><button class="btn green" onclick="showTab('billing')">Customer Login</button><button class="btn orange" onclick="showRetailLogin()">Retail Billing Login</button><button class="btn" onclick="showTab('admin')">Admin Login</button></div>
+  </section>
+  <div class="tabs no-print hidden">
+    <button id="tabBilling" class="active" onclick="showTab('billing')">Customer Billing</button>
+    <button id="tabAdmin" onclick="showTab('admin')">Admin</button>
+  </div>
+
+  <section id="billing" class="hidden">
+    <div class="card no-print" id="customerAuthCard">
+      <h3>Customer Login / Registration</h3>
+      <div id="customerLoggedIn" class="notice hidden"></div><div class="actions"><button class="btn secondary" onclick="backToWelcome()">Back to Welcome</button></div>
+      <div id="customerAuthForms">
+        <div class="grid">
+          <div><label>Username / Mobile Number *</label><input id="authMobile" maxlength="10" inputmode="numeric" placeholder="10 digit mobile"></div>
+          <div><label>Password</label><input id="authPassword" type="password" placeholder="At least 6 characters"></div>
+          <div><label>Name (for registration)</label><input id="authName" placeholder="Customer name"></div>
+          <div><label>Address (for registration)</label><input id="authAddress" placeholder="Address"></div>
+          <div><label>GSTIN (optional)</label><input id="authGST" placeholder="GSTIN"></div>
+        </div>
+        <div class="actions"><button class="btn" onclick="customerLogin()">Login</button><button class="btn green" onclick="customerRegister()">Register</button></div>
+      </div>
+    </div>
+
+    <div class="card no-print">
+      <div class="grid">
+        <div><label>Invoice No.</label><input id="invoiceNo" placeholder="Auto"></div>
+        <div><label>Invoice Date</label><input id="invoiceDate" type="date" lang="en-GB"></div>
+        <div><label>Due Date</label><input id="dueDate" type="date" lang="en-GB"></div>
+        
+      </div>
+    </div>
+
+    <div class="card no-print">
+      <h3>Customer Details</h3>
+      <div id="customerMsg" class="notice hidden"></div>
+      <div class="grid">
+        <div><label>Customer / Shop Name *</label><input id="customerName" list="customerList" oninput="customerChanged()" onchange="customerChanged()" placeholder="Type or select customer"></div>
+        <div><label>Address *</label><input id="customerAddress" placeholder="Address"></div>
+        <div><label>Mobile Number *</label><input id="customerMobile" placeholder="10 digit mobile number" maxlength="10" inputmode="numeric" pattern="[0-9]{10}"></div>
+        <div><label>GSTIN (optional)</label><input id="customerGSTIN" placeholder="GSTIN"></div>
+      </div>
+      <datalist id="customerList"></datalist>
+    </div>
+
+    <div class="card no-print">
+      <h3>Products</h3>
+      <div class="searchbar"><input id="productSearch" oninput="renderProducts()" placeholder="Search Product Name, HSN Number or MRP"><button class="btn secondary" type="button" onclick="toggleCustomerFilters()">☷ Category</button><button class="btn green" type="button" onclick="openCartPage('customer')">View Cart (<span id="customerCartCount">0</span>)</button></div><div id="customerFilters" class="grid hidden" style="margin-bottom:12px"><div><label>Category</label><select id="customerCategoryFilter" onchange="renderProducts()"><option value="">All Categories</option></select></div><div><label>Company</label><select id="customerCompanyFilter" onchange="renderProducts()"><option value="">All Companies</option></select></div><div style="align-self:end"><button class="btn secondary" type="button" onclick="clearCustomerFilters()">Show All Products</button></div></div><div id="productCards" class="products products-scroll"></div>
+    </div>
+
+    <div class="card no-print hidden" id="customerSavedInvoices">
+      <h3>My Saved Bills</h3><div class="searchbar"><input id="customerSavedBillSearch" placeholder="Search saved bills by invoice number or date" oninput="renderCustomerSavedBills()"></div><div class="tablewrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Due Date</th><th>Items</th><th>Total</th><th>Action</th></tr></thead><tbody id="customerInvoiceBody"></tbody></table></div>
+    </div>
+    <div class="card" id="customerBillCart">
+      <div class="billhead"><div><h2 id="customerBillAgencyName" style="color:#000">SHREE AGENCY</h2><div id="customerBillAgencyAddress">Shingnapur, Tal. Man, Dist. Satara, Maharashtra</div><div id="customerBillAgencyMobile">Mobile: 9423362646</div></div></div>
+      <div class="invoice-overview-live"><div class="customer-meta-live"><div class="customer-info-line"><span><b>Customer:</b> <span id="viewCustomer">-</span></span><span><b>Mobile:</b> <span id="viewMobile">-</span></span></div><div class="customer-info-line"><span><b>Address:</b> <span id="viewAddress">-</span></span><span><b>GSTIN:</b> <span id="viewGST">-</span></span></div></div><div class="invoice-meta-live"><div class="invoice-field"><b>Invoice No.</b><span id="viewInvoiceNo">Auto</span></div><div class="invoice-field"><b>Invoice Date</b><span id="viewInvoiceDate"></span></div><div class="invoice-field"><b>Due Date</b><span id="viewInvoiceDueDate"></span></div></div></div>
+      <div class="tablewrap" style="margin-top:12px">
+        <table><thead><tr><th>SR.</th><th>ITEMS</th><th>HSN</th><th>BATCH NO.</th><th class="mfg-col">MFG DATE</th><th class="exp-col">EXP. DATE</th><th>QTY.</th><th>MRP</th><th>RATE</th><th>TAX %</th><th>AMOUNT</th><th class="no-print">ACTION</th></tr></thead><tbody id="cartBody"></tbody></table>
+      </div>
+      <div class="totals">
+        
+        <div><span>Subtotal</span><b id="subtotal">0.00</b></div>
+        <div><span>Discount</span><b id="discountDisplay">₹0.00</b></div>
+        <div><span>GST / Tax</span><b id="gst">0.00</b></div>
+        
+        <div class="grand"><span>Grand Total</span><b id="grandTotal">0.00</b></div>
+      </div>
+      <div class="actions no-print"><button class="btn green direct-save-hidden" onclick="saveBill()">Save Bill</button><button class="btn secondary" onclick="clearBill()">Clear</button></div>
+    </div>
+  </section>
+
+  <section id="retailLoginPage" class="card hidden">
+    <h2>Retail Billing Login</h2><div class="actions"><button class="btn secondary" onclick="backToWelcome()">Back to Welcome</button></div>
+    <label>Retail Billing Password</label><input id="retailPassword" type="password" placeholder="Enter retail password">
+    <div class="actions"><button class="btn orange" onclick="retailLogin()">Login to Retail Billing</button></div><div id="retailLoginMessage" class="muted"></div>
+  </section>
+  <section id="retailOnlyPage" class="hidden"><div class="actions no-print"><button class="btn secondary" onclick="backToWelcome()">Back to Welcome</button><button class="btn red" onclick="retailLogout()">Retail Logout</button></div><div id="retailOnlyContent"></div></section>
+  <section id="admin" class="hidden">
+    <div class="card no-print" id="adminLoginCard">
+      <h3>Admin Login</h3>
+      <div class="actions"><button class="btn secondary" onclick="backToWelcome()">Back to Welcome</button></div>
+      <label>Admin Password</label><input id="adminPassword" type="password" placeholder="Enter admin password">
+      <div class="actions"><button class="btn green" onclick="adminLogin()">Login</button></div>
+      <div id="adminLoginMessage" class="muted">Admin access is password protected.</div>
+    </div>
+    <div id="adminWorkspace" class="hidden">
+    <div class="actions no-print"><button class="btn secondary" onclick="backToWelcome()">Back to Welcome</button><button class="btn red" onclick="adminLogout()">Admin Logout</button></div>
+    <div class="statgrid no-print">
+      <div class="stat">Products<b id="statProducts">0</b></div><div class="stat">Customers<b id="statCustomers">0</b></div><div class="stat">Invoices<b id="statInvoices">0</b></div><div class="stat">Low / Minus Stock<b id="statLow">0</b></div>
+    </div>
+    <div class="card no-print">
+      <div class="actions">
+        <button class="btn" onclick="adminPanel('products')">Products / Stock</button>
+        <button class="btn green" onclick="adminPanel('billing')">Admin Billing</button>
+        
+        <button class="btn" onclick="adminPanel('customers')">Customers</button>
+        <button class="btn orange" onclick="showLowStock()">Low Stock</button>
+        <button class="btn secondary" onclick="adminPanel('invoices')">Invoices</button><button class="btn red" onclick="adminPanel('deleted')">Deleted Bills</button>
+        <button class="btn" onclick="adminPanel('reports')">Reports</button><button class="btn" onclick="adminPanel('settings')">Agency Settings</button>
+      </div>
+    </div>
+
+    <div id="adminBilling" class="card hidden">
+      <h3>Admin Billing</h3>
+      <p class="muted">P and estimated profit are visible only in this Admin Billing screen. They are not included in customer invoices or printouts.</p>
+      <div class="grid">
+        <div><label>Invoice No. (enter existing to autofill)</label><input id="abInvoiceNo" placeholder="Auto" onchange="lookupAdminInvoice()"></div><div><label>Invoice Date</label><input id="abInvoiceDate" type="date" lang="en-GB"></div><div><label>Due Date</label><input id="abDueDate" type="date" lang="en-GB"></div><div><label>Customer Name *</label><input id="abName" list="adminCustomerList" placeholder="Type or select customer" oninput="adminCustomerChanged()" onchange="adminCustomerChanged()"><datalist id="adminCustomerList"></datalist></div>
+        <div><label>Address *</label><input id="abAddress"></div><div><label>Mobile *</label><input id="abMobile" maxlength="10" inputmode="numeric"></div><div><label>GSTIN</label><input id="abGST"></div><div><label>Previous Pending Bill Amount</label><input id="abPending" type="number" min="0" step="0.01" inputmode="decimal" value="0" onwheel="this.blur()"></div>
+      </div>
+      <h4>Add Products</h4><div class="actions cart-jump"><button class="btn green" type="button" onclick="openCartPage('admin')">View Cart (<span id="adminCartCount">0</span>)</button></div>
+      <div class="grid"><div><label>Product Category</label><select id="abCategory" onchange="adminProductSearchChanged()"><option value="">All Categories</option></select></div><div><label>Company</label><select id="abCompany" onchange="adminProductSearchChanged()"><option value="">All Companies</option></select></div><div style="grid-column:span 2"><label>Search Product Name / HSN / MRP</label><input id="abProductSearch" list="adminProductList" placeholder="Search product" oninput="adminProductSearchChanged()"><datalist id="adminProductList"></datalist></div></div>
+      <select id="abProduct" class="hidden"></select><div id="adminProductMatches" class="products products-scroll" style="margin-top:10px"></div>
+      <div class="tablewrap" id="adminBillCart" style="margin-top:12px"><table><thead><tr><th>Product</th><th class="mfg-col">MFG</th><th class="exp-col">EXP</th><th>Qty</th><th>MRP</th><th>Selling Rate</th><th>Amount</th><th>Action</th><th>P</th></tr></thead><tbody id="adminBillBody"></tbody></table></div>
+      <div class="grid" style="margin-top:12px"><div><label>Discount</label><input id="abDiscount" type="number" min="0" step="0.01" value="0" oninput="renderAdminBill()"></div></div>
+      <div class="actions"><button class="btn green direct-save-hidden" onclick="saveAdminBill()">Save Admin Bill</button><button class="btn secondary" onclick="clearAdminBill()">Clear</button></div>
+    </div>
+
+    <div id="adminRetail" class="card hidden">
+      <h3>Retail Customer Billing</h3>
+      <p class="muted">Retail totals are calculated from MRP, less each item's discount, plus GST. Purchase rate is never displayed.</p>
+      <div class="grid"><div><label>Find Existing Customer</label><input id="rtCustomerSearch" list="rtCustomerList" placeholder="Search customer name / mobile" onchange="selectRetailCustomer()"><datalist id="rtCustomerList"></datalist></div><div><label>Customer Name *</label><input id="rtName"></div><div><label>Mobile Number *</label><input id="rtMobile" maxlength="10" inputmode="numeric"></div><div><label>Village *</label><input id="rtVillage"></div><div><label>Invoice Date</label><input id="rtDate" type="date" lang="en-GB" onchange="$('rtDue').value=addDaysISO(this.value,1)"></div><div><label>Due Date</label><input id="rtDue" type="date" lang="en-GB"></div></div>
+      <h4>Add Products</h4><div class="actions cart-jump"><button class="btn green" type="button" onclick="openCartPage('retail')">View Cart (<span id="retailCartCount">0</span>)</button></div><div class="grid"><div><label>Category</label><select id="rtCategory" onchange="renderRetailProducts()"><option value="">All Categories</option></select></div><div><label>Company</label><select id="rtCompany" onchange="renderRetailProducts()"><option value="">All Companies</option></select></div><div style="grid-column:span 2"><label>Search Product Name / HSN / MRP</label><input id="rtSearch" oninput="renderRetailProducts()" placeholder="Search product"></div></div><div id="rtProducts" class="products products-scroll" style="margin-top:10px"></div>
+      <div class="tablewrap" id="retailBillCart" style="margin-top:12px"><table><thead><tr><th>Product Name</th><th>Quantity</th><th>MRP</th><th>Disc (%)</th><th>GST %</th><th class="mfg-col">MFG</th><th class="exp-col">EXP</th><th>Amount</th><th>Action</th></tr></thead><tbody id="rtBody"></tbody></table></div>
+      <div class="actions"><button class="btn green direct-save-hidden" onclick="saveRetailBill()">Save Retail Bill</button><button class="btn secondary" onclick="clearRetailBill()">Clear</button></div>
+    </div>
+
+    <div id="adminProducts" class="card">
+      <h3>Admin - Insert / Edit Product</h3>
+      <div id="productMsg"></div>
+      <div class="grid">
+        <div><label>Product Name *</label><input id="pName"></div><div><label>HSN</label><input id="pHSN"></div><div><label>Batch No.</label><input id="pBatch"></div><div></div>
+        <div><label>Manufacturing Date</label><input id="pMfg" type="date" lang="en-GB"></div><div><label>Expiry Date</label><input id="pExp" type="date" lang="en-GB"></div><div><label>MRP</label><input id="pMrp" type="number" step="0.01"></div><div><label>P</label><input id="pPurchaseRate" type="number" step="0.01"></div><div><label>Selling Rate</label><input id="pRate" type="number" step="0.01"></div>
+        <div><label>Category</label><input id="pCategory" placeholder="e.g. Personal Care"></div><div><label>Company Name</label><input id="pCompany" placeholder="e.g. Garnier"></div><div><label>GST / Tax %</label><input id="pTax" type="number" step="0.01"></div><div><label>Stock</label><input id="pStock" type="number" step="0.001"></div><input id="pUnit" type="hidden" value="piece"><div><label>Product Image URL</label><input id="pImage" placeholder="Paste image URL"></div><div><label>Or choose photo from gallery</label><input id="pImageFile" type="file" accept="image/*" onchange="loadProductPhoto(this)"></div>
+      </div>
+      <div class="actions"><button class="btn green" onclick="saveProduct()">Save Product</button><button class="btn secondary" onclick="clearProductForm()">New Product</button></div>
+      <hr>
+      <div class="searchbar"><input id="adminStockSearch" placeholder="Search product stock by name / HSN / batch" oninput="renderAdminProducts()"></div>
+      <div class="tablewrap" id="adminStockTableWrap"><table><thead><tr><th>Product</th><th>HSN</th><th>Batch</th><th class="mfg-col">MFG</th><th class="exp-col">EXP</th><th>MRP</th><th>Selling Rate</th><th>Category</th><th>Company</th><th>Tax</th><th>Stock</th><th>Action</th></tr></thead><tbody id="adminProductBody"></tbody></table></div>
+    </div>
+
+    <div id="agencySettings" class="card hidden">
+      <h3>Agency Details & Invoice Settings</h3>
+      <div class="grid">
+        <div><label>Agency Name</label><input id="setAgencyName" value="SHREE AGENCY"></div><div><label>Agency Name Colour (Default Black)</label><input id="setAgencyNameColor" type="color" value="#000000"></div><div><label>GSTIN</label><input id="setAgencyGSTIN"></div>
+        <div><label>Contact Number</label><input id="setAgencyMobile"></div><div><label>Owner / Agency Email</label><input id="setAgencyEmail" type="email" placeholder="example@email.com"></div><div><label>Address</label><input id="setAgencyAddress"></div>
+        <div><label>Terms & Conditions</label><textarea id="setTerms" rows="3"></textarea></div><div><label>Authorized Signature</label><input id="setSignature"></div>
+        <div><label>Agency Logo (Gallery)</label><input id="setLogoFile" type="file" accept="image/*" onchange="readSettingImage(this,'setLogoData')"><input id="setLogoData" type="hidden"><label><input type="checkbox" id="showLogoOnBill" checked style="width:auto"> Show logo on final bill</label></div>
+        <div><label>Welcome Background (Gallery)</label><input id="setBgFile" type="file" accept="image/*" onchange="readSettingImage(this,'setBgData')"><input id="setBgData" type="hidden"></div>
+        <div><label>Welcome Quote</label><textarea id="setWelcomeQuote" rows="3" placeholder="Your welcome message"></textarea></div>
+        <div><label>Welcome Heading Colour</label><input id="setWelcomeHeadingColor" type="color" value="#ffffff"></div>
+        <div><label>Welcome Quote Colour</label><input id="setWelcomeQuoteColor" type="color" value="#ffffff"></div>
+        <div><label>Final Bill Heading Colour</label><input id="setBillHeadingColor" type="color" value="#000000"></div>
+        <div><label>Final Bill Table Heading Background</label><input id="setBillTableColor" type="color" value="#e2e8f0"></div>
+        <div><label>Subtotal Text Colour</label><input id="setSubtotalColor" type="color" value="#1f2937"></div>
+        <div><label>Discount Text Colour</label><input id="setDiscountColor" type="color" value="#1f2937"></div>
+        <div><label>GST Text Colour</label><input id="setGstColor" type="color" value="#1f2937"></div>
+        <div><label>Bill Total Text Colour</label><input id="setBillTotalColor" type="color" value="#1f2937"></div>
+        <div><label>Previous Pending Text Colour</label><input id="setPendingColor" type="color" value="#1f2937"></div>
+        <div><label>Grand Total Text Colour</label><input id="setGrandTotalTextColor" type="color" value="#1d4ed8"></div>
+        <div><label>Grand Total Highlight Background</label><input id="setGrandTotalColor" type="color" value="#dbeafe"></div>
+        <div><label>Show Terms &amp; Conditions</label><label><input type="checkbox" id="showTerms" checked style="width:auto"> Display terms on final bill</label></div>
+        <div><label>Show Authorized Signature</label><label><input type="checkbox" id="showSignature" checked style="width:auto"> Display authorized signature on final bill</label></div>
+        <div><label>Final Bill Fields</label><div class="muted">Choose which totals appear on the printed bill.</div>
+          <label><input type="checkbox" id="showSubtotal" checked style="width:auto"> Subtotal</label><label><input type="checkbox" id="showDiscount" checked style="width:auto"> Discount</label><label><input type="checkbox" id="showGst" checked style="width:auto"> GST / Tax</label><label><input type="checkbox" id="showBillTotal" checked style="width:auto"> Bill Total</label><label><input type="checkbox" id="showPreviousPending" checked style="width:auto"> Previous Pending</label><label><input type="checkbox" id="showGrandTotal" checked style="width:auto"> Grand Total</label><hr><b>Product Date Fields</b><label><input type="checkbox" id="showMfg" checked style="width:auto"> Show MFG Date</label><label><input type="checkbox" id="showExp" checked style="width:auto"> Show EXP Date</label>
+        </div>
+      </div><div class="actions"><button class="btn green" onclick="saveAgencySettings()">Save Agency Details</button></div>
+      <hr><h3>Data Backup & Restore</h3>
+      <p class="muted">Download a private backup of products, customers, invoices and settings. Restore replaces all current data on this device/server. Keep backup files secure because they contain customer information and password hashes.</p>
+      <div class="actions"><button class="btn secondary" type="button" onclick="downloadDataBackup()">Download data.json Backup</button><label class="btn orange" style="display:inline-flex;align-items:center;gap:8px">Restore Backup <input id="restoreBackupFile" type="file" accept=".json,application/json" style="display:none" onchange="restoreDataBackup(this)"></label></div>
+      <p class="muted">Laptop data and Render data are separate. Use Download Backup on one side and Restore Backup on the other to transfer the latest data.</p>
+    </div>
+
+    <div id="adminCustomers" class="card hidden">
+      <h3>Customer Management</h3><div class="searchbar"><input id="customerManagementSearch" placeholder="Search customer name / mobile" oninput="renderAdminCustomers()"></div>
+      <div class="grid">
+        <div><label>Name</label><input id="cName"></div><div><label>Address</label><input id="cAddress"></div><div><label>Mobile</label><input id="cMobile" maxlength="10" inputmode="numeric" pattern="[0-9]{10}"></div><div><label>GSTIN</label><input id="cGST"></div>
+      </div><div class="actions"><button class="btn green" onclick="saveCustomerAdmin()">Save Customer</button><button class="btn secondary" onclick="clearCustomerAdmin()">New</button></div>
+      <div class="tablewrap"><table><thead><tr><th>Name</th><th>Address</th><th>Mobile</th><th>GSTIN</th><th>Login</th><th>Action</th></tr></thead><tbody id="adminCustomerBody"></tbody></table></div>
+    </div>
+
+    <div id="adminInvoices" class="card hidden">
+      <h3>Saved Invoices</h3><div class="searchbar"><input id="invoiceManagementSearch" placeholder="Search invoice / customer / mobile" oninput="renderAdminInvoices()"><input id="invoiceDateManagementSearch" placeholder="Search invoice date (DD/MM/YYYY)" oninput="renderAdminInvoices()"></div><div class="actions"><button class="btn" onclick="invoiceFilter='admin';renderAdminInvoices()">Admin Bills</button><button class="btn green" onclick="invoiceFilter='customer';renderAdminInvoices()">Customer Bills</button><button class="btn orange" onclick="invoiceFilter='retail';renderAdminInvoices()">Retail Bills</button><button class="btn secondary" onclick="invoiceFilter='all';renderAdminInvoices()">All Invoices</button></div>
+      <div class="tablewrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Mobile</th><th>Items</th><th>Grand Total</th><th>Action</th></tr></thead><tbody id="adminInvoiceBody"></tbody></table></div>
+    </div>
+
+    <div id="adminDeleted" class="card hidden"><h3>Deleted Bills</h3><p class="muted">Bills moved here can be permanently deleted. Permanent deletion cannot be undone.</p><div class="tablewrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Mobile</th><th>Grand Total</th><th>Deleted At</th><th>Action</th></tr></thead><tbody id="deletedInvoiceBody"></tbody></table></div></div>
+
+    <div id="adminReports" class="card hidden">
+      <h3>Sales Reports</h3>
+      <div class="grid">
+        <div><label>Report Type</label><select id="reportType" onchange="renderReport()"><option value="monthly">Monthly</option><option value="date">Date Wise</option><option value="name">Product Name Wise</option><option value="mrp">MRP Wise</option><option value="all">Show All Profit</option></select></div>
+        <div><label>From Date</label><input id="reportFrom" type="date" lang="en-GB" onchange="renderReport()"></div>
+        <div><label>To Date</label><input id="reportTo" type="date" lang="en-GB" onchange="renderReport()"></div>
+        <div><label>Product Name</label><input id="reportName" placeholder="Optional" oninput="renderReport()"></div>
+        <div><label>Customer Name / Mobile</label><input id="reportCustomer" list="reportCustomerList" placeholder="Search by customer name or phone number" oninput="renderReport()"><datalist id="reportCustomerList"></datalist></div>
+        <div><label>MRP</label><input id="reportMrp" type="number" step="0.01" placeholder="Optional" oninput="renderReport()"></div>
+      </div>
+      <div class="actions"><button class="btn secondary" onclick="clearReportFilters()">Clear Filters</button><button class="btn orange" onclick="printReport()">Print Report</button></div>
+      <div id="reportSummary" class="notice" style="margin-top:12px"></div>
+      <div class="tablewrap"><table><thead id="reportHead"></thead><tbody id="reportBody"></tbody></table></div>
+    </div>
+
+    <div id="adminLow" class="card hidden">
+      <h3>Low Stock / Minus Stock</h3>
+      <p class="muted">Products with stock at or below the configured threshold, including negative stock.</p>
+      <div class="tablewrap"><table><thead><tr><th>Product</th><th>Batch</th><th>Stock</th><th>Threshold</th><th>Action</th></tr></thead><tbody id="lowStockBody"></tbody></table></div>
+    </div>
+  </section>
+  <footer id="agencyFooter" class="agency-footer"><div class="footer-brand"><b id="footerAgencyName">SHREE AGENCY</b></div><div class="footer-details"><div class="footer-item footer-address"><span class="footer-icon address-icon" aria-label="Address">⌖</span><span id="footerOwnerAddress">Shingnapur, Tal. Man, Dist. Satara, Maharashtra</span></div><div class="footer-item footer-email"><span class="footer-icon email-icon" aria-label="Email">✉</span><span id="footerOwnerEmail"></span></div><div class="footer-item footer-contact"><span class="footer-icon phone-icon" aria-label="Contact">☎</span><span id="footerOwnerContact">9423362646</span></div></div></footer>
+</div>
+
+<div id="cartPage" class="modal cart-page-modal"><div class="modalbox cart-page-box"><div class="modalhead"><h2 id="cartPageTitle">View Cart</h2><button class="btn red" onclick="closeCartPage()">Close</button></div><div id="cartPageItems" class="tablewrap"></div><div class="actions cart-page-actions"><button class="btn secondary" onclick="closeCartPage()">Back to Products</button><button class="btn green" id="cartPageSaveBtn" onclick="saveCurrentCart()">Save Bill</button></div></div></div>
+
+<div id="addQtyModal" class="modal">
+  <div class="modalbox" style="max-width:420px">
+    <div class="modalhead"><h2>Choose Quantity</h2><button class="btn red" onclick="closeAddQty()">Close</button></div>
+    <p style="margin-top:0">Product: <b id="qtyProductName"></b></p>
+    <label>Quantity</label>
+    <input id="addQtyInput" type="number" min="0" step="0.001" value="0" style="font-size:20px">
+    <div class="actions" style="margin-top:14px"><button class="btn green" onclick="confirmAddQty()">Add to Bill</button><button class="btn secondary" onclick="closeAddQty()">Cancel</button></div>
+  </div>
+</div>
+
+<div id="editModal" class="modal">
+  <div class="modalbox">
+    <div class="modalhead"><h2>Edit Saved Invoice</h2><button class="btn red" onclick="closeModal()">Close</button></div>
+    <div id="editContent"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+let adminToken=localStorage.getItem("shivAdminToken")||"";
+let deletedInvoices=[];
+let products=[], adminProducts=[], customers=[], invoices=[], cart=[], adminCart=[], editingProductId=null, editingCustomerId=null, editingInvoiceId=null, settings={lowStockThreshold:5}, customerToken=localStorage.getItem("shivCustomerToken")||"", loggedCustomer=null, customerInvoices=[];
+const openCategories=new Set(), openCompanies=new Set();
+
+const $ = id => document.getElementById(id);
+function money(n){return Number(n||0).toFixed(2)}
+function fmtDate(v){if(!v)return "";const s=String(v).trim();if(/^\d{4}-\d{2}-\d{2}$/.test(s)){const [y,m,d]=s.split("-");return `${d}/${m}/${y}`}if(/^\d{2}\/\d{2}\/\d{4}$/.test(s))return s;if(/^\d{4}-\d{2}-\d{2}T/.test(s))return fmtDate(s.slice(0,10));return s}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+async function api(url,opt={}){const headers={"Content-Type":"application/json",...(opt.headers||{})};if(customerToken)headers.Authorization="Bearer "+customerToken;if(adminToken)headers["X-Admin-Token"]=adminToken;const r=await fetch(url,{...opt,headers});const j=await r.json();if(!r.ok)throw new Error(j.error||"Request failed");return j}
+
+async function load(){
+  [products,customers,invoices,settings]=await Promise.all([api("/api/products"),api("/api/customers"),adminToken?api("/api/invoices"):Promise.resolve([]),api("/api/settings")]);
+  renderProducts();renderCustomersList();renderCart();renderReport();updateStats();setDates();updateAgencyHeader();applyBranding();if(customerToken)refreshCustomerSession();
+}
+async function loadAdminData(){
+  addBlackColorOptions();
+  [adminProducts,invoices,deletedInvoices]=await Promise.all([api("/api/admin/products"),api("/api/invoices"),api("/api/deleted-invoices")]);
+  renderAdminProducts();renderAdminProductSelect();
+  if($("setAgencyName")){
+    $("setAgencyName").value=settings.agencyName||"SHREE AGENCY";$("setAgencyGSTIN").value=settings.agencyGSTIN||"";$("setAgencyMobile").value=settings.agencyMobile||"9423362646";$("setAgencyAddress").value=settings.agencyAddress||"Shingnapur, Tal. Man, Dist. Satara, Maharashtra";$("setAgencyEmail").value=settings.agencyEmail||"";
+    $("setTerms").value=settings.terms??"₹1,000 charge for cheque bounce. Please ensure sufficient funds before issuing a cheque.";$("setSignature").value=settings.authorizedSignature??"Authorized Signature";
+    const vals={setWelcomeQuote:settings.welcomeQuote||"",setAgencyNameColor:settings.agencyNameColor||"#000000",setWelcomeHeadingColor:settings.welcomeHeadingColor||"#000000",setWelcomeQuoteColor:settings.welcomeQuoteColor||"#000000",setBillHeadingColor:settings.billHeadingColor||"#000000",setBillTableColor:settings.billTableColor||"#e2e8f0",setSubtotalColor:settings.subtotalColor||"#000000",setDiscountColor:settings.discountColor||"#000000",setGstColor:settings.gstColor||"#000000",setBillTotalColor:settings.billTotalColor||"#000000",setPendingColor:settings.pendingColor||"#000000",setGrandTotalTextColor:settings.grandTotalTextColor||"#000000",setGrandTotalColor:settings.grandTotalColor||"#e5e7eb"};
+    Object.entries(vals).forEach(([id,v])=>{if($(id))$(id).value=v});
+    if($("showTerms"))$("showTerms").checked=settings.showTerms!==false;if($("showSignature"))$("showSignature").checked=settings.showSignature!==false;if($("showLogoOnBill"))$("showLogoOnBill").checked=settings.showLogoOnBill!==false;
+  }
+  renderAdminBill();adminProductSearchChanged();renderRetailFilters();renderAdminCustomers();renderAdminInvoices();renderDeletedInvoices();renderReportCustomerList();renderReport();if(!$("abInvoiceDate").value){$("abInvoiceDate").value=new Date().toISOString().slice(0,10);$("abDueDate").value=addDaysISO($("abInvoiceDate").value,1)}updateStats();
+}
+function addDaysISO(dateStr, days){const d=new Date((dateStr||new Date().toISOString().slice(0,10))+"T00:00:00");d.setDate(d.getDate()+days);return d.toISOString().slice(0,10)}
+function setDates(){if(!$("invoiceDate").value){let d=new Date().toISOString().slice(0,10);$("invoiceDate").value=d} $("dueDate").value=addDaysISO($("invoiceDate").value,1); updateBillHeader()}
+function updateBillHeader(){
+  $("viewInvoiceNo").textContent=$("invoiceNo").value||"Auto";
+  $("viewInvoiceDate").textContent=fmtDate($("invoiceDate").value);
+  if($("viewInvoiceDueDate"))$("viewInvoiceDueDate").textContent=fmtDate($("dueDate").value);
+  $("viewCustomer").textContent=$("customerName").value||"-";$("viewAddress").textContent=$("customerAddress").value||"-";$("viewMobile").textContent=$("customerMobile").value||"-";$("viewGST").textContent=$("customerGSTIN").value||"-";
+}
+["invoiceNo","invoiceDate","dueDate","customerName","customerAddress","customerMobile","customerGSTIN"].forEach(x=>$(x).addEventListener("input",updateBillHeader));
+$("customerName").addEventListener("keydown",e=>{if(e.key==="Enter"){customerChanged();e.preventDefault();$("customerAddress").focus()}});$("invoiceDate").addEventListener("change",()=>{$("dueDate").value=addDaysISO($("invoiceDate").value,1);updateBillHeader()});$("dueDate").addEventListener("input",updateBillHeader);
+
+function backToWelcome(){["billing","admin","retailLoginPage","retailOnlyPage"].forEach(id=>$(id).classList.add("hidden"));$("welcomePage").classList.remove("hidden");document.querySelector(".tabs").classList.add("hidden")}
+function showTab(t){document.querySelector(".tabs").classList.add("hidden");$("welcomePage").classList.add("hidden");$("billing").classList.toggle("hidden",t!=="billing");$("admin").classList.toggle("hidden",t!=="admin");$("tabBilling").classList.toggle("active",t==="billing");$("tabAdmin").classList.toggle("active",t==="admin");if(t==="admin"){if(adminToken){$("adminLoginCard").classList.add("hidden");$("adminWorkspace").classList.remove("hidden");loadAdminData().catch(e=>{adminLogout();alert(e.message)})}else{$("adminLoginCard").classList.remove("hidden");$("adminWorkspace").classList.add("hidden")}}}
+let retailToken=localStorage.getItem("shivRetailToken")||"";
+function showRetailLogin(){["welcomePage","billing","admin","retailOnlyPage"].forEach(id=>$(id).classList.add("hidden"));$("retailLoginPage").classList.remove("hidden");}
+async function retailLogin(){try{const r=await fetch("/api/retail/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:$('retailPassword').value})});const j=await r.json();if(!r.ok)throw new Error(j.error||"Login failed");retailToken=j.token;localStorage.setItem("shivRetailToken",retailToken);adminToken=retailToken;await loadAdminData();$('retailOnlyContent').appendChild($('adminRetail'));$('adminRetail').classList.remove('hidden');$('retailLoginPage').classList.add('hidden');$('retailOnlyPage').classList.remove('hidden');}catch(e){$('retailLoginMessage').textContent=e.message}}
+async function retailLogout(){try{await fetch('/api/admin/logout',{method:'POST',headers:{'X-Admin-Token':retailToken}})}catch{}retailToken='';adminToken='';localStorage.removeItem('shivRetailToken');$('adminWorkspace').insertBefore($('adminRetail'),$('adminProducts'));backToWelcome()}
+
+async function adminLogin(){try{const r=await fetch("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:$("adminPassword").value})});const j=await r.json();if(!r.ok)throw new Error(j.error||"Login failed");adminToken=j.token;localStorage.setItem("shivAdminToken",adminToken);$("adminLoginCard").classList.add("hidden");$("adminWorkspace").classList.remove("hidden");await loadAdminData();if(retailLoginRequested){adminPanel("retail");retailLoginRequested=false}}catch(e){$("adminLoginMessage").textContent=e.message}}
+async function adminLogout(){try{await fetch("/api/admin/logout",{method:"POST",headers:{"X-Admin-Token":adminToken}})}catch{}adminToken="";localStorage.removeItem("shivAdminToken");$("adminWorkspace").classList.add("hidden");$("adminLoginCard").classList.remove("hidden");}
+function adminPanel(which){["adminProducts","adminBilling","adminRetail","adminCustomers","adminInvoices","adminDeleted","adminReports","adminLow","agencySettings"].forEach(id=>$(id).classList.add("hidden"));$(which==="settings"?"agencySettings":"admin"+which[0].toUpperCase()+which.slice(1)).classList.remove("hidden");if(which==="deleted")renderDeletedInvoices()}
+
+function renderCustomersList(){
+  $("customerList").innerHTML=customers.map(c=>`<option value="${esc(c.name)}"></option><option value="${esc(c.mobile)}"></option>`).join("");
+}
+function customerChanged(){
+  const raw=$("customerName").value.trim();
+  const name=raw.toLowerCase();
+  const c=customers.find(x=>String(x.name||"").trim().toLowerCase()===name || String(x.mobile||"").trim()===raw);
+  if(c){
+    $("customerName").value=c.name;
+    $("customerAddress").value=c.address||"";
+    $("customerMobile").value=c.mobile||"";
+    $("customerGSTIN").value=c.gstin||"";
+  }
+  updateBillHeader();
+}
+
+function productCard(p,showPurchase=false){return `<div class="product">
+  ${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" onerror="this.style.display='none'">`:''}<h3>${esc(p.name)}</h3>
+  <div class="muted">HSN: ${esc(p.hsn||"-")}</div>
+  <div class="price"><span>MRP ₹${money(p.mrp)}</span><span>Rate ₹${money(p.rate)}</span>${showPurchase?`<span class="p-faint">P ₹${money(p.purchaseRate)}</span>`:""}${settings.showMfg!==false?`<span>MFG: ${fmtDate(p.manufacturingDate)||"-"}</span>`:""}${settings.showExp!==false?`<span>EXP: ${fmtDate(p.expiryDate)||"-"}</span>`:""}</div>
+  <div class="stock ${p.stock<0?"negative":p.stock<5?"low":""}">Stock: ${p.stock}</div>
+  <div class="actions"><button class="btn" onclick="addWithQty('${p.id}')">Add</button></div></div>`}
+function toggleCustomerFilters(){$('customerFilters').classList.toggle('hidden')}
+function clearCustomerFilters(){if($('customerCategoryFilter'))$('customerCategoryFilter').value='';if($('customerCompanyFilter'))$('customerCompanyFilter').value='';$('productSearch').value='';renderProducts()}
+function renderCustomerProductFilters(){
+ const fill=(id,field,label)=>{const el=$(id);if(!el)return;const keep=el.value;const vals=[...new Set(products.map(p=>String(p[field]||(field==='category'?'Uncategorized':'Unassigned')).trim()||(field==='category'?'Uncategorized':'Unassigned')))].sort((a,b)=>a.localeCompare(b));el.innerHTML=`<option value="">All ${label}</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');el.value=keep};
+ fill('customerCategoryFilter','category','Categories');fill('customerCompanyFilter','company','Companies');
+}
+function renderProducts(){
+ renderCustomerProductFilters();
+ const q=$('productSearch').value.trim().toLowerCase(),cat=$('customerCategoryFilter')?.value||'',co=$('customerCompanyFilter')?.value||'';
+ const list=products.filter(p=>(!cat||(p.category||'Uncategorized')===cat)&&(!co||(p.company||'Unassigned')===co)&&(!q||[p.name,p.hsn,String(p.mrp??'')].some(v=>String(v||'').toLowerCase().includes(q))));
+ $('productCards').innerHTML=list.map(p=>productCard(p,false)).join('')||'<p>No matching products.</p>';
+ $('customerCartCount').textContent=cart.reduce((n,x)=>n+Number(x.qty||0),0);
+}
+function scrollToBillCart(){$('customerBillCart')?.scrollIntoView({behavior:'smooth',block:'start'})}
+function scrollToAdminCart(){$('adminBillCart')?.scrollIntoView({behavior:'smooth',block:'start'})}
+function scrollToRetailCart(){$('retailBillCart')?.scrollIntoView({behavior:'smooth',block:'start'})}
+
+let activeCartType="";
+function cartSourceMarkup(type){
+ const list=type==="customer"?cart:type==="admin"?adminCart:retailCart;
+ if(!Array.isArray(list)||!list.length)return '<p class="muted" style="padding:14px">Your cart is empty. Add products first, then open View Cart.</p>';
+ let heads='',rows='';
+ let totalRow='';
+ if(type==="customer"){
+  heads='<th>Product</th><th>HSN</th><th>Batch</th><th>MFG</th><th>EXP</th><th>Qty</th><th>MRP</th><th>Rate</th><th>Tax</th><th>Amount</th>';
+  let qty=0,mrp=0,rate=0,tax=0,amount=0;
+  rows=list.map(x=>{const p=products.find(q=>q.id===x.productId)||{};const q=Number(x.qty||0),m=Number(p.mrp||0),r=Number(p.rate||0),t=Number(p.tax||0),a=q*r;qty+=q;mrp+=q*m;rate+=a;tax+=a*t/100;amount+=a;return `<tr><td>${esc(p.name||'')}</td><td>${esc(p.hsn||'-')}</td><td>${esc(p.batchNo||'-')}</td><td>${fmtDate(p.manufacturingDate)||'-'}</td><td>${fmtDate(p.expiryDate)||'-'}</td><td>${money(q)}</td><td>₹${money(m)}</td><td>₹${money(r)}</td><td>${money(t)}%</td><td>₹${money(a)}</td></tr>`}).join('');
+  totalRow=`<tr class="bill-grand-row"><td colspan="5">TOTAL</td><td>${money(qty)}</td><td>₹${money(mrp)}</td><td>₹${money(rate)}</td><td>₹${money(tax)}</td><td>₹${money(amount)}</td></tr>`;
+ }else if(type==="admin"){
+  heads='<th>Product</th><th>MRP</th><th>Rate</th><th>P</th><th>MFG</th><th>EXP</th><th>Qty</th><th>Amount</th>';
+  let qty=0,mrp=0,rate=0,purchase=0,amount=0;
+  rows=list.map(x=>{const p=adminProducts.find(q=>q.id===x.productId)||{};const q=Number(x.qty||0),m=Number(x.mrp??p.mrp??0),r=Number(x.rate||0),pr=Number(p.purchaseRate||0),a=q*r;qty+=q;mrp+=q*m;rate+=a;purchase+=q*pr;amount+=a;return `<tr><td>${esc(p.name||'')}</td><td>₹${money(m)}</td><td>₹${money(r)}</td><td class="p-faint">₹${money(pr)}</td><td>${fmtDate(p.manufacturingDate)||'-'}</td><td>${fmtDate(p.expiryDate)||'-'}</td><td>${money(q)}</td><td>₹${money(a)}</td></tr>`}).join('');
+  totalRow=`<tr class="bill-grand-row"><td>TOTAL</td><td>₹${money(mrp)}</td><td>₹${money(rate)}</td><td class="p-faint">₹${money(purchase)}</td><td></td><td></td><td>${money(qty)}</td><td>₹${money(amount)}</td></tr>`;
+ }else{
+  heads='<th>Product</th><th>Qty</th><th>MRP</th><th>Discount</th><th>Tax</th><th>MFG</th><th>EXP</th><th>Amount</th>';
+  let qty=0,mrp=0,discount=0,tax=0,amountTotal=0;
+  rows=list.map(x=>{const p=adminProducts.find(q=>q.id===x.productId)||{};const q=Number(x.qty||0),m=Number(x.mrp||0),gross=q*m,d=gross*Number(x.discount||0)/100,net=gross-d,t=net*Number(x.tax||0)/100,a=net+t;qty+=q;mrp+=gross;discount+=d;tax+=t;amountTotal+=a;return `<tr><td>${esc(p.name||'')}</td><td>${money(q)}</td><td>₹${money(m)}</td><td>${money(x.discount||0)}%</td><td>${money(x.tax||0)}%</td><td>${fmtDate(p.manufacturingDate)||'-'}</td><td>${fmtDate(p.expiryDate)||'-'}</td><td>₹${money(a)}</td></tr>`}).join('');
+  totalRow=`<tr class="bill-grand-row"><td>TOTAL</td><td>${money(qty)}</td><td>₹${money(mrp)}</td><td>₹${money(discount)}</td><td>₹${money(tax)}</td><td></td><td></td><td>₹${money(amountTotal)}</td></tr>`;
+ }
+ return `<table><thead><tr>${heads}</tr></thead><tbody>${rows}${totalRow}</tbody></table>`;
+}
+function openCartPage(type){activeCartType=type;renderCart();renderAdminBill();renderRetailBill();$("cartPageTitle").textContent=(type==="customer"?"Customer":type==="admin"?"Admin":"Retail")+" View Cart";$("cartPageSaveBtn").textContent=type==="customer"?"Save Bill":type==="admin"?"Save Admin Bill":"Save Retail Bill";$("cartPage").classList.add("show");refreshCartPage()}
+function refreshCartPage(){if(!$("cartPage")?.classList.contains("show")||!activeCartType)return;$("cartPageItems").innerHTML=cartSourceMarkup(activeCartType)}
+function closeCartPage(){$("cartPage").classList.remove("show");activeCartType=""}
+async function saveCurrentCart(){const type=activeCartType;if(type==="customer")await saveBill();else if(type==="admin")await saveAdminBill();else if(type==="retail")await saveRetailBill();const remains=type==="customer"?cart.length:type==="admin"?adminCart.length:retailCart.length;if(!remains)closeCartPage()}
+
+function clearProductSearch(){$("productSearch").value ="";$("productSearch").value ="";renderProducts()}
+let pendingProductId=null;let pendingQtyTarget="";
+function addWithQty(id){
+  const p=products.find(x=>x.id===id);
+  if(!p) return;
+  pendingProductId=id;pendingQtyTarget="customer";
+  $("qtyProductName").textContent=p.name;
+  $("addQtyInput").value="0";
+  $("addQtyModal").classList.add("show");
+  setTimeout(()=>$("addQtyInput").focus(),50);
+}
+function closeAddQty(){pendingProductId=null;pendingAdminProductId=null;pendingAdminFree=false;pendingEditProductId=null;pendingQtyTarget="";$("addQtyModal").classList.remove("show")}
+function confirmAddQty(){
+  const qty=Math.round((Number($("addQtyInput").value)||0)*1000)/1000;
+  if(!Number.isFinite(qty)||qty<=0){alert("Quantity must be greater than 0.");return}
+  if(pendingQtyTarget==="admin" || pendingAdminProductId){adminAddItem();return;}
+  if(pendingQtyTarget==="edit" || pendingEditProductId){addProductToEditedInvoice(qty);return;}
+  if(!pendingProductId){alert("Select a product first.");return}
+  const old=cart.find(i=>i.productId===pendingProductId);
+  if(old) old.qty += qty; else cart.push({productId:pendingProductId,qty});
+  closeAddQty();renderCart();
+}
+function addOne(id){ addWithQty(id); }
+function changeQty(i,v){v=Math.max(0.001,Math.round((Number(v)||1)*1000)/1000);cart[i].qty=v;renderCart()}
+function removeItem(i){cart.splice(i,1);renderCart()}
+function renderCart(){
+  if($("customerCartCount"))$("customerCartCount").textContent=cart.reduce((n,x)=>n+Number(x.qty||0),0);
+  $("cartBody").innerHTML=cart.map((x,i)=>{const p=products.find(q=>q.id===x.productId);return `<tr>
+    <td>${i+1}</td><td>${esc(p.name)}</td><td>${esc(p.hsn)}</td><td>${esc(p.batchNo)}</td><td class="mfg-col">${fmtDate(p.manufacturingDate)}</td><td class="exp-col">${fmtDate(p.expiryDate)}</td>
+    <td><div class="qty"><button onclick="changeQty(${i},${x.qty-1})">−</button><input value="${x.qty}" type="number" min="0.001" step="0.001" onchange="changeQty(${i},this.value)"><button onclick="changeQty(${i},${x.qty+1})">+</button></div></td>
+    <td>₹${money(p.mrp)}</td><td>₹${money(p.rate)}</td><td>${money(p.tax)}%</td><td>₹${money(x.qty*p.rate)}</td><td class="no-print"><button class="btn red" onclick="removeItem(${i})">Remove</button></td>
+  </tr>`}).join("") || `<tr><td colspan="12" style="text-align:center">No items added.</td></tr>`;
+  let subtotal=0,mrp=0,gst=0;cart.forEach(x=>{const p=products.find(q=>q.id===x.productId);subtotal+=x.qty*p.rate;mrp+=x.qty*p.mrp;gst+=x.qty*p.rate*p.tax/100});
+  const disc=0,del=0,grand=Math.max(0,subtotal-disc)+gst+del;
+  if($("totalMrp"))$("totalMrp").textContent=money(mrp);$("subtotal").textContent=money(subtotal);$("gst").textContent=money(gst);$("discountDisplay").textContent="₹"+money(disc);if($("deliveryDisplay"))$("deliveryDisplay").textContent="₹"+money(del);$("grandTotal").textContent=money(grand);updateBillHeader();refreshCartPage()
+}
+
+async function saveBill(){
+  try{
+    if(!customerToken) throw new Error("Please log in or register before placing an order.");
+    if(!$("customerName").value.trim()||!$("customerAddress").value.trim()||!$("customerMobile").value.trim()) throw new Error("Customer Name, Address and Mobile Number are required before saving.");if(!/^\d{10}$/.test($("customerMobile").value.trim())) throw new Error("Mobile Number must contain exactly 10 digits.");
+    if(!cart.length) throw new Error("Add at least one product.");
+    const body={invoiceNo:$("invoiceNo").value,invoiceDate:$("invoiceDate").value,dueDate:$("dueDate").value,customerName:$("customerName").value,address:$("customerAddress").value,mobile:$("customerMobile").value,gstin:$("customerGSTIN").value,discount:0,delivery:0,items:cart};
+    const inv=await api("/api/invoices",{method:"POST",body:JSON.stringify(body)});
+    const orderMsg=`New customer order\nInvoice: ${inv.invoiceNo}\nCustomer: ${inv.customer.name}\nMobile: ${inv.customer.mobile}\nAddress: ${inv.customer.address}\nInvoice Date: ${fmtDate(inv.invoiceDate)}\nDue Date: ${fmtDate(inv.dueDate)}\nGrand Total: ₹${money(inv.grandTotal)}`;
+    window.open("https://wa.me/919423362646?text="+encodeURIComponent(orderMsg),"_blank");
+    clearBill();await load();if(customerToken)await loadCustomerInvoices();
+  }catch(e){alert(e.message)}
+}
+function clearBill(){
+  cart=[];$("invoiceNo").value ="";$("customerName").value ="";$("customerAddress").value ="";$("customerMobile").value ="";$("customerGSTIN").value ="";setDates();renderCart()
+}
+
+function clearProductForm(){editingProductId=null;["pName","pHSN","pBatch","pMfg","pExp","pMrp","pPurchaseRate","pRate","pCategory","pCompany","pTax","pStock","pImage"].forEach(id=>$(id).value ="");$("pUnit").value="piece"}
+function editProduct(id){
+  const p=adminProducts.find(x=>x.id===id);if(!p){alert("Product not found. Refresh the product list and try again.");return;}adminPanel("products");editingProductId=id;
+  $("pName").value =p.name;$("pHSN").value =p.hsn;$("pBatch").value =p.batchNo;$("pMfg").value =p.manufacturingDate;$("pExp").value =p.expiryDate;$("pMrp").value =p.mrp;$("pPurchaseRate").value=p.purchaseRate||0;$("pRate").value =p.rate;$("pCategory").value=p.category||"";$("pCompany").value=p.company||"";$("pTax").value =p.tax;$("pStock").value =p.stock;$("pUnit").value=p.unit||"piece";$("pImage").value =p.image;
+  window.scrollTo({top:document.querySelector("#adminProducts").offsetTop,behavior:"smooth"})
+}
+
+function updateAgencyHeader(){if(!$("agencyHeaderName"))return;const name=settings.agencyName||"SHREE AGENCY",address=settings.agencyAddress||"Shingnapur, Tal. Man, Dist. Satara, Maharashtra",mobile=settings.agencyMobile||"9423362646";$("agencyHeaderName").textContent=name;$("agencyHeaderName").style.color=settings.agencyNameColor||"#000000";document.title=name+" Billing";$("agencyHeaderDetails").textContent=[address,mobile?"Mobile: "+mobile:"",settings.agencyEmail?"Email: "+settings.agencyEmail:"",settings.agencyGSTIN?"GSTIN: "+settings.agencyGSTIN:""].filter(Boolean).join(" · ");if($("footerAgencyName"))$("footerAgencyName").textContent=name;if($("footerOwnerContact"))$("footerOwnerContact").textContent=mobile;if($("footerOwnerEmail"))$("footerOwnerEmail").textContent=settings.agencyEmail?settings.agencyEmail:"";if($("footerOwnerAddress"))$("footerOwnerAddress").textContent=address;if($("customerBillAgencyName")){$("customerBillAgencyName").textContent=name;$("customerBillAgencyName").style.color=settings.agencyNameColor||"#000000";}if($("customerBillAgencyAddress"))$("customerBillAgencyAddress").textContent=address;if($("customerBillAgencyMobile"))$("customerBillAgencyMobile").textContent=mobile?"Mobile: "+mobile:"";if($("welcomeAgencyTitle"))$("welcomeAgencyTitle").textContent="Welcome to "+name}
+function loadProductPhoto(input){const file=input.files&&input.files[0];if(!file)return;if(file.size>5*1024*1024){alert("Choose an image smaller than 5 MB.");input.value="";return;}const reader=new FileReader();reader.onload=()=>{$("pImage").value=String(reader.result||"")};reader.readAsDataURL(file)}
+function addBlackColorOptions(){document.querySelectorAll('#agencySettings input[type="color"]').forEach(input=>{if(input.dataset.blackOptionAdded)return;input.dataset.blackOptionAdded='1';const b=document.createElement('button');b.type='button';b.className='color-black-btn';b.textContent='Set Black';b.addEventListener('click',()=>{input.value='#000000';input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}))});input.insertAdjacentElement('afterend',b)})}
+function readSettingImage(input,target){const f=input.files&&input.files[0];if(!f)return;if(f.size>5*1024*1024){alert("Choose an image smaller than 5 MB.");input.value="";return}const r=new FileReader();r.onload=()=>$(target).value=String(r.result||"");r.readAsDataURL(f)}
+async function downloadDataBackup(){
+ try{
+  if(!adminToken)throw new Error("Please log in as Admin first.");
+  const r=await fetch("/api/admin/data/export",{headers:{"X-Admin-Token":adminToken}});
+  if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.error||"Could not download backup.")}
+  const blob=await r.blob(),url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="shree-agency-data-backup-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+ }catch(e){alert(e.message)}
+}
+async function restoreDataBackup(input){
+ const file=input.files&&input.files[0];if(!file)return;
+ if(!confirm("Restore this backup? All current products, customers, invoices and settings on this server will be replaced. Download a backup of current data first.")){input.value="";return}
+ try{
+  if(!adminToken)throw new Error("Please log in as Admin first.");
+  const parsed=JSON.parse(await file.text());
+  const result=await api("/api/admin/data/restore",{method:"POST",body:JSON.stringify(parsed)});
+  alert(`Backup restored. Products: ${result.products}, Customers: ${result.customers}, Invoices: ${result.invoices}. The website will reload.`);
+  location.reload();
+ }catch(e){alert(e.message)}finally{input.value=""}
+}
+
+function saveAgencySettings(){
+ const body={agencyNameColor:$("setAgencyNameColor").value,showLogoOnBill:$("showLogoOnBill").checked,agencyName:$('setAgencyName').value,agencyGSTIN:$('setAgencyGSTIN').value,agencyMobile:$('setAgencyMobile').value,agencyEmail:$('setAgencyEmail').value,agencyAddress:$('setAgencyAddress').value,terms:$('setTerms').value,authorizedSignature:$('setSignature').value,showTerms:$('showTerms').checked,showSignature:$('showSignature').checked,logo:$('setLogoData').value||settings.logo||'',welcomeBackground:$('setBgData').value||settings.welcomeBackground||'',welcomeQuote:$('setWelcomeQuote').value,welcomeHeadingColor:$('setWelcomeHeadingColor').value,welcomeQuoteColor:$('setWelcomeQuoteColor').value,billHeadingColor:$('setBillHeadingColor').value,billTableColor:$('setBillTableColor').value,subtotalColor:$('setSubtotalColor').value,discountColor:$('setDiscountColor').value,gstColor:$('setGstColor').value,billTotalColor:$('setBillTotalColor').value,pendingColor:$('setPendingColor').value,grandTotalTextColor:$('setGrandTotalTextColor').value,grandTotalColor:$('setGrandTotalColor').value,billFields:{subtotal:$('showSubtotal').checked,discount:$('showDiscount').checked,gst:$('showGst').checked,billTotal:$('showBillTotal').checked,previousPending:$('showPreviousPending').checked,grandTotal:$('showGrandTotal').checked},showMfg:$('showMfg').checked,showExp:$('showExp').checked};
+ api('/api/settings',{method:'PUT',body:JSON.stringify(body)}).then(x=>{settings=x;updateAgencyHeader();applyBranding();alert('Agency settings saved. These settings now apply across the website and final bills.')}).catch(e=>alert(e.message));
+}
+function applyMfgExpVisibility(){document.body.classList.toggle("hide-mfg",settings.showMfg===false);document.body.classList.toggle("hide-exp",settings.showExp===false);["showMfg","showExp"].forEach(id=>{if($(id))$(id).checked=settings[id]!==false})}
+function applyBranding(){
+ applyMfgExpVisibility();
+ if($("agencyHeaderName"))$("agencyHeaderName").style.color=settings.agencyNameColor||"#000000";
+ if(settings.logo){document.querySelectorAll('.agency-logo').forEach(el=>{el.style.backgroundImage=`url(${settings.logo})`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';el.textContent=''});}
+ const welcome=$('welcomePage');if(welcome){welcome.style.backgroundImage=settings.welcomeBackground?`linear-gradient(#17255499,#17255499),url(${settings.welcomeBackground})`:'';welcome.style.backgroundColor='';welcome.style.color=settings.welcomeHeadingColor||'#ffffff';}
+ const quote=$('welcomeQuoteText');if(quote){quote.textContent=settings.welcomeQuote||'“Your trust is our strength. Quality products, transparent billing and service you can count on — every time.”';quote.style.color=settings.welcomeQuoteColor||'#ffffff';}
+ const f=settings.billFields||{};[['showSubtotal','subtotal'],['showDiscount','discount'],['showGst','gst'],['showBillTotal','billTotal'],['showPreviousPending','previousPending'],['showGrandTotal','grandTotal']].forEach(([id,k])=>{if($(id))$(id).checked=f[k]!==false});
+ if($('showTerms'))$('showTerms').checked=settings.showTerms!==false;if($('showSignature'))$('showSignature').checked=settings.showSignature!==false;
+}
+
+function showInvoiceProfit(id){const inv=invoices.find(x=>x.id===id);if(!inv)return;const rows=inv.items.map(it=>{const cost=Number(it.purchaseRate||0)*Number(it.qty||0),sales=Number(it.amount||0);return `<tr><td>${esc(it.name)}</td><td>${it.qty}</td><td><span class="p-faint">₹${money(it.purchaseRate||0)}</span></td><td>₹${money(it.rate)}</td><td>₹${money(it.mrp||0)}</td><td><span class="p-faint">₹${money(sales-cost)}</span></td></tr>`}).join("");const qtyTotal=inv.items.reduce((a,it)=>a+Number(it.qty||0),0),purchaseTotal=inv.items.reduce((a,it)=>a+Number(it.purchaseRate||0)*Number(it.qty||0),0),rateTotal=inv.items.reduce((a,it)=>a+Number(it.rate||0)*Number(it.qty||0),0),mrpTotal=inv.items.reduce((a,it)=>a+Number(it.mrp||0)*Number(it.qty||0),0),sales=inv.items.reduce((a,it)=>a+Number(it.amount||0),0),cost=purchaseTotal;$("editContent").innerHTML=`<h3>Profit Details — ${esc(inv.invoiceNo)}</h3><div class="tablewrap"><table><thead><tr><th>Product</th><th>Qty</th><th>P</th><th>Selling Rate</th><th>MRP</th><th>Line P</th></tr></thead><tbody>${rows}<tr class="bill-grand-row"><td>TOTAL</td><td>${money(qtyTotal)}</td><td>₹${money(purchaseTotal)}</td><td>₹${money(rateTotal)}</td><td>₹${money(mrpTotal)}</td><td>₹${money(sales-cost)}</td></tr></tbody></table></div>`;$("editModal").classList.add("show")}
+async function shareBillDocument(inv){
+ if(!inv)return;
+ const html=billHtml(inv);
+ let renderHost=null;
+ try{
+  if(typeof html2pdf!=="undefined"){
+   const parsed=new DOMParser().parseFromString(html,"text/html");
+   renderHost=document.createElement("div");
+   renderHost.setAttribute("aria-hidden","true");
+   renderHost.style.cssText="position:fixed;left:-12000px;top:0;width:794px;background:#fff;color:#111;z-index:-1;";
+   const style=document.createElement("style");
+   style.textContent=[...parsed.querySelectorAll("style")].map(x=>x.textContent).join("\n");
+   renderHost.appendChild(style);
+   const page=document.createElement("div");
+   page.style.cssText="width:794px;min-height:1123px;background:#fff;color:#111;padding:22px;box-sizing:border-box;";
+   [...parsed.body.childNodes].forEach(node=>page.appendChild(document.importNode(node,true)));
+   renderHost.appendChild(page);document.body.appendChild(renderHost);
+   const imgs=[...renderHost.querySelectorAll("img")];
+   await Promise.all(imgs.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.onload=resolve;img.onerror=resolve;setTimeout(resolve,3000)})));
+   if(document.fonts?.ready)await document.fonts.ready;
+   const blob=await html2pdf().set({margin:8,filename:`${inv.invoiceNo}.pdf`,image:{type:"jpeg",quality:0.98},html2canvas:{scale:2,useCORS:true,allowTaint:false,backgroundColor:"#ffffff",windowWidth:794,scrollX:0,scrollY:0,logging:false},pagebreak:{mode:["css","legacy"],avoid:["tr",".invoice-overview",".layout"]},jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}}).from(page).outputPdf("blob");
+   if(!blob||blob.size<1500)throw new Error("Generated PDF is empty");
+   const file=new File([blob],`${inv.invoiceNo}.pdf`,{type:"application/pdf"});
+   if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({title:`Invoice ${inv.invoiceNo}`,text:`Complete final bill for ${inv.customer?.name||"customer"}`,files:[file]});return}
+   const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+   alert("Complete bill PDF downloaded. Attach this PDF in WhatsApp to share the full printed bill.");return;
+  }
+ }catch(e){console.warn("PDF generation fallback",e)}finally{renderHost?.remove()}
+ const w=window.open("","_blank");if(!w){alert("Please allow pop-ups. The complete bill will open for printing or saving as PDF.");return}w.document.open();w.document.write(html);w.document.close();w.focus();setTimeout(()=>{alert("Choose Print → Save as PDF, then share the complete PDF on WhatsApp.");w.print()},500)
+}
+async function shareInvoice(id){const inv=invoices.find(x=>x.id===id);return shareBillDocument(inv)}
+async function shareCustomerInvoice(id){const inv=customerInvoices.find(x=>x.id===id);return shareBillDocument(inv)}
+async function saveProduct(){
+  try{
+    const body={name:$("pName").value,hsn:$("pHSN").value,batchNo:$("pBatch").value,manufacturingDate:$("pMfg").value,expiryDate:$("pExp").value,mrp:$("pMrp").value,purchaseRate:$("pPurchaseRate").value,rate:$("pRate").value,category:$("pCategory").value,company:$("pCompany").value,tax:$("pTax").value,stock:$("pStock").value,unit:$("pUnit").value,image:$("pImage").value};
+    if(editingProductId) await api("/api/products/"+editingProductId,{method:"PUT",body:JSON.stringify(body)}); else await api("/api/products",{method:"POST",body:JSON.stringify(body)});
+    clearProductForm();await load();await loadAdminData();alert("Product saved.");
+  }catch(e){alert(e.message)}
+}
+async function deleteProduct(id){if(confirm("Delete this product?")){await api("/api/products/"+id,{method:"DELETE"});await load();await loadAdminData()}}
+function renderAdminProducts(){
+  const q=($("adminStockSearch")?.value||"").trim().toLowerCase();
+  $("adminProductBody").innerHTML=adminProducts.filter(p=>!q||[p.name,p.hsn,p.batchNo,p.category,p.company].some(v=>String(v||"").toLowerCase().includes(q))).map(p=>`<tr>
+    <td><b>${esc(p.name)}</b></td>
+    <td>${esc(p.hsn)}</td>
+    <td>${esc(p.batchNo)}</td>
+    <td class="mfg-col">${fmtDate(p.manufacturingDate)}</td>
+    <td class="exp-col">${fmtDate(p.expiryDate)}</td>
+    <td>₹${money(p.mrp)}</td>
+    <td>₹${money(p.rate)}</td>
+    <td>${esc(p.category||"")}</td><td>${esc(p.company||"")}</td>
+    <td>${money(p.tax)}%</td>
+    <td class="${p.stock<0?"negative":p.stock<5?"low":""}"><b>${p.stock}</b></td>
+    <td><div class="actions"><button class="btn" onclick="editProduct('${p.id}')">Edit</button><button class="btn red" onclick="deleteProduct('${p.id}')">Delete</button></div></td>
+  </tr>`).join("")||"<tr><td colspan=13>No products.</td></tr>";
+}
+function renderAdminProductSelect(){
+  const sel=$("abProduct");if(!sel)return;
+  sel.innerHTML='<option value="">Select product</option>'+adminProducts.map(p=>`<option value="${p.id}">${esc(p.name)} · ${esc(p.company||"Unassigned")} · HSN ${esc(p.hsn)} · Stock ${p.stock}</option>`).join("");
+  const dl=$("adminProductList");if(dl)dl.innerHTML=adminProducts.map(p=>`<option value="${esc(p.name)} | HSN ${esc(p.hsn)} | MRP ${money(p.mrp)}"></option>`).join("");
+  const cat=$("abCategory");if(cat){const selected=cat.value;const cats=[...new Set(adminProducts.map(p=>String(p.category||"Uncategorized").trim()||"Uncategorized"))].sort();cat.innerHTML='<option value="">All Categories</option>'+cats.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');cat.value=selected;}
+  const comp=$("abCompany");if(comp){const selected=comp.value;const companies=[...new Set(adminProducts.map(p=>String(p.company||"Unassigned").trim()||"Unassigned"))].sort();comp.innerHTML='<option value="">All Companies</option>'+companies.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');comp.value=selected;}
+  const customersList=$("adminCustomerList");if(customersList)customersList.innerHTML=customers.map(c=>`<option value="${esc(c.name)}"></option><option value="${esc(c.mobile)}"></option>`).join("");
+  if(!$('abInvoiceDate').value){$('abInvoiceDate').value=new Date().toISOString().slice(0,10);$('abDueDate').value=addDaysISO($('abInvoiceDate').value,1)}
+}
+function adminProductSearchChanged(){
+  const raw=$("abProductSearch").value.trim().toLowerCase(), category=$("abCategory")?.value||"", company=$("abCompany")?.value||"";
+  const matches=adminProducts.filter(x=>(!category||(String(x.category||"Uncategorized").trim()||"Uncategorized")===category)&&(!company||(String(x.company||"Unassigned").trim()||"Unassigned")===company)&&(!raw||[x.name,x.hsn,String(x.mrp)].some(v=>String(v||"").toLowerCase().includes(raw))));
+  const cats=[...new Set(matches.map(p=>String(p.category||"Uncategorized").trim()||"Uncategorized"))].sort();
+  $("adminProductMatches").innerHTML=cats.map(cat=>{const list=matches.filter(p=>(String(p.category||"Uncategorized").trim()||"Uncategorized")===cat);const companies=[...new Set(list.map(p=>String(p.company||"Unassigned").trim()||"Unassigned"))].sort();return `<section class="category-block"><div class="category-toggle"><span>${esc(cat)}</span><span>${list.length} products</span></div><div class="category-content">${companies.map(co=>{const group=list.filter(p=>(String(p.company||"Unassigned").trim()||"Unassigned")===co);return `<div><div class="company-toggle"><span>${esc(co)}</span><span>${group.length} products</span></div><div class="company-content products">${group.map(p=>`<div class="product">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" onerror="this.style.display='none'">`:''}<h3>${esc(p.name)}</h3><div class="muted">HSN: ${esc(p.hsn||"-")}</div><div class="price"><span>MRP ₹${money(p.mrp)}</span><span>Rate ₹${money(p.rate)}</span><span class="p-faint">P ₹${money(p.purchaseRate)}</span></div><div class="muted">Stock: ${p.stock}</div><div class="actions"><button class="btn" onclick="selectAdminProduct('${p.id}',false)">Add</button><button class="btn orange" onclick="selectAdminProduct('${p.id}',true)">Free</button></div></div>`).join("")}</div></div>`}).join("")}</div></section>`}).join("")||'<div class="notice">No products found.</div>';
+  if(matches.length===1){$("abProduct").value=matches[0].id;}else{$("abProduct").value="";}
+}
+function selectAdminProduct(id,isFree=false){const p=adminProducts.find(x=>x.id===id);if(!p)return;pendingAdminFree=!!isFree;pendingQtyTarget="admin";$("abProduct").value=p.id;$("abProductSearch").value=p.name;pendingAdminProductId=id;$("qtyProductName").textContent=p.name;$("addQtyInput").value="0";$("addQtyModal").classList.add("show");setTimeout(()=>$("addQtyInput").focus(),50)}
+function showAdminProductDetails(p){
+  $("adminProductDetails").innerHTML=`<div style="display:flex;gap:12px;align-items:flex-start">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" style="width:100px;height:95px;object-fit:contain;border:1px solid #ddd;border-radius:8px">`:""}<div><b>${esc(p.name)}</b><br>Company: ${esc(p.company||"-")} · Category: ${esc(p.category||"-")}<br>HSN: ${esc(p.hsn||"-")} · Batch: ${esc(p.batchNo||"-")}<br>MFG: ${fmtDate(p.manufacturingDate)||"-"} · EXP: ${fmtDate(p.expiryDate)||"-"}<br>MRP: ₹${money(p.mrp)} · <span class="p-faint">P: ₹${money(p.purchaseRate)}</span><br>Selling Rate: ₹${money(p.rate)} · Tax: ${money(p.tax)}% · Stock: ${p.stock}</div></div>`;
+}
+function lookupAdminInvoice(){const no=$("abInvoiceNo").value.trim();if(!no)return;const inv=invoices.find(x=>String(x.invoiceNo).toLowerCase()===no.toLowerCase());if(!inv){api("/api/invoices/lookup/"+encodeURIComponent(no)).then(x=>fillAdminCustomer(x.customer)).catch(e=>alert(e.message));return}fillAdminCustomer(inv.customer);$("abInvoiceDate").value=inv.invoiceDate;$("abDueDate").value=addDaysISO(inv.invoiceDate,1)}
+function fillAdminCustomer(c){$("abName").value=c.name||"";$("abAddress").value=c.address||"";$("abMobile").value=c.mobile||"";$("abGST").value=c.gstin||""}
+function adminCustomerChanged(){const raw=$("abName").value.trim().toLowerCase();const c=customers.find(x=>String(x.name||"").trim().toLowerCase()===raw);if(c){$("abName").value=c.name;$("abAddress").value=c.address||"";$("abMobile").value=c.mobile||"";$("abGST").value=c.gstin||""}else{$("abAddress").value="";$("abMobile").value="";$("abGST").value=""}}
+$("abName").addEventListener("keydown",e=>{if(e.key==="Enter"){adminCustomerChanged();e.preventDefault();$("abAddress").focus()}});
+let pendingAdminProductId=null;let pendingAdminFree=false;
+function adminAddItem(){const p=adminProducts.find(x=>x.id===(pendingAdminProductId||$("abProduct").value));const qty=Math.max(0.001,Math.round((Number($("addQtyInput").value)||0)*1000)/1000);if(!p){alert("Select a product.");return}if(!Number.isFinite(qty)||qty<=0){alert("Enter a valid quantity.");return}const old=adminCart.find(x=>x.productId===p.id&&!!x.free===!!pendingAdminFree);if(old)old.qty+=qty;else adminCart.push({productId:p.id,qty,rate:pendingAdminFree?0:Number(p.rate||0),mrp:Number(p.mrp||0),free:pendingAdminFree});pendingAdminFree=false;pendingAdminProductId=null;closeAddQty();$("abProductSearch").value="";adminProductSearchChanged();renderAdminBill()}
+
+function updateAdminLine(i,key,value){if(!adminCart[i])return;const n=Number(value);if(!Number.isFinite(n)||n<0){renderAdminBill();return}adminCart[i][key]=key==='qty'?Math.max(0.001,Math.round(n*1000)/1000):n;renderAdminBill()}
+function adminRemoveItem(i){adminCart.splice(i,1);renderAdminBill()}
+function renderAdminBill(){
+ const body=$('adminBillBody');if(!body)return;
+ if($('adminCartCount'))$('adminCartCount').textContent=adminCart.reduce((n,x)=>n+Number(x.qty||0),0);
+ let sales=0,cost=0,qty=0,mrpTotal=0,rateTotal=0;
+ const rows=adminCart.map((it,i)=>{const p=adminProducts.find(x=>x.id===it.productId)||{},amount=it.qty*it.rate,purchase=Number(p.purchaseRate||0),mrp=Number(it.mrp??p.mrp??0);sales+=amount;cost+=it.qty*purchase;qty+=it.qty;mrpTotal+=it.qty*mrp;rateTotal+=it.qty*it.rate;return `<tr><td>${esc(p.name||'')}</td><td class="mfg-col">${fmtDate(p.manufacturingDate)||'-'}</td><td class="exp-col">${fmtDate(p.expiryDate)||'-'}</td><td><input style="width:68px" type="number" min="0.001" step="0.001" value="${it.qty}" onchange="updateAdminLine(${i},'qty',this.value)"></td><td>₹${money(mrp)}</td><td><input style="width:90px" type="number" min="0" step="0.01" value="${it.rate}" onchange="updateAdminLine(${i},'rate',this.value)"></td><td>₹${money(amount)}</td><td><button class="btn red" onclick="adminRemoveItem(${i})">Remove</button></td><td>₹${money(purchase)}</td></tr>`}).join('');
+ body.innerHTML=rows||'<tr><td colspan="9">No products added.</td></tr>';
+ if(adminCart.length)body.innerHTML+=`<tr class="bill-grand-row"><td>TOTAL</td><td></td><td></td><td>${money(qty)}</td><td>₹${money(mrpTotal)}</td><td>₹${money(rateTotal)}</td><td>₹${money(sales)}</td><td></td><td>₹${money(cost)}</td></tr>`;
+ refreshCartPage();
+}
+function clearAdminBill(){
+ adminCart=[];['abInvoiceNo','abName','abAddress','abMobile','abGST','abProductSearch'].forEach(id=>{if($(id))$(id).value=''});
+ $('abPending').value='0';$('abCategory').value='';$('abCompany').value='';$('abProduct').value='';$('abDiscount').value='0';
+ $('abInvoiceDate').value=new Date().toISOString().slice(0,10);$('abDueDate').value=addDaysISO($('abInvoiceDate').value,1);
+ adminProductSearchChanged();renderAdminBill();
+}
+async function saveAdminBill(){try{if(!$("abName").value.trim()||!$("abAddress").value.trim()||!/^\d{10}$/.test($("abMobile").value.trim()))throw new Error("Enter customer name, address and valid 10 digit mobile number.");if(!adminCart.length)throw new Error("Add at least one product.");const items=adminCart.map(it=>({productId:it.productId,qty:it.qty,rate:it.rate,mrp:it.mrp,tax:it.free?0:undefined,free:!!it.free}));const body={invoiceNo:$("abInvoiceNo").value,invoiceDate:$("abInvoiceDate").value,dueDate:$("abDueDate").value,customerName:$("abName").value,address:$("abAddress").value,mobile:$("abMobile").value,gstin:$("abGST").value,discount:$("abDiscount").value,delivery:0,previousPending:$("abPending").value,dueDate:$("abDueDate").value,adminBilling:true,items};const inv=await api("/api/invoices",{method:"POST",body:JSON.stringify(body)});clearAdminBill();await load();await loadAdminData()}catch(e){alert(e.message)}}
+
+let retailCart=[];
+function renderRetailFilters(){if($("rtCustomerList"))$("rtCustomerList").innerHTML=customers.map(c=>`<option value="${esc(c.name)}"></option><option value="${esc(c.mobile)}"></option>`).join("");
+ const fill=(id,field,label)=>{const el=$(id);if(!el)return;const keep=el.value;const vals=[...new Set(adminProducts.map(p=>String(p[field]||label).trim()||label))].sort();el.innerHTML=`<option value="">All ${field==='category'?'Categories':'Companies'}</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');el.value=keep};
+ fill('rtCategory','category','Uncategorized');fill('rtCompany','company','Unassigned');
+ if(!$('rtDate').value){$('rtDate').value=new Date().toISOString().slice(0,10);$('rtDue').value=addDaysISO($('rtDate').value,1)}renderRetailProducts();renderRetailBill();
+}
+function selectRetailCustomer(){const q=($("rtCustomerSearch")?.value||"").trim().toLowerCase();if(!q)return;const c=customers.find(x=>String(x.name||"").toLowerCase()===q||String(x.mobile||"")===q||String(x.name||"").toLowerCase().includes(q)||String(x.mobile||"").includes(q));if(!c){return}$("rtName").value=c.name||"";$("rtMobile").value=c.mobile||"";$("rtVillage").value=c.address||"";}
+function renderRetailProducts(){if(!$('rtProducts'))return;const q=$('rtSearch').value.trim().toLowerCase(),cat=$('rtCategory').value,co=$('rtCompany').value;const list=adminProducts.filter(p=>(!cat||(p.category||'Uncategorized')===cat)&&(!co||(p.company||'Unassigned')===co)&&(!q||[p.name,p.hsn,String(p.mrp)].some(x=>String(x||'').toLowerCase().includes(q))));$('rtProducts').classList.add('retail-horizontal');$('rtProducts').innerHTML=list.map(p=>`<div class="product">${p.image?`<img src="${esc(p.image)}" alt="" onerror="this.style.display='none'">`:''}<h3>${esc(p.name)}</h3><div class="price"><span>MRP ₹${money(p.mrp)}</span><span>Rate ₹${money(p.rate)}</span><span class="p-faint">P ₹${money(p.purchaseRate)}</span>${settings.showMfg!==false?`<span>MFG: ${fmtDate(p.manufacturingDate)||"-"}</span>`:""}${settings.showExp!==false?`<span>EXP: ${fmtDate(p.expiryDate)||"-"}</span>`:""}</div><div class="actions"><button class="btn" onclick="addRetailProduct('${p.id}')">Add</button></div></div>`).join('')||'<p>No matching products.</p>'}
+function addRetailProduct(id){const p=adminProducts.find(x=>x.id===id);if(!p)return;const old=retailCart.find(x=>x.productId===id);if(old)old.qty++;else retailCart.push({productId:id,qty:1,discount:0,mrp:Number(p.mrp||0),tax:0});renderRetailBill()}
+function updateRetailLine(i,k,v){const n=Number(v);if(!retailCart[i]||!Number.isFinite(n)||n<0)return;retailCart[i][k]=k==='qty'?Math.max(0.001,Math.round(n*1000)/1000):n;renderRetailBill()}
+function renderRetailBill(){if(!$('rtBody'))return;if($('retailCartCount'))$('retailCartCount').textContent=retailCart.reduce((n,x)=>n+Number(x.qty||0),0);let mrp=0,disc=0,gst=0,total=0,qtyTotal=0,rateTotal=0;$('rtBody').innerHTML=retailCart.map((it,i)=>{const p=adminProducts.find(x=>x.id===it.productId)||{},gross=it.qty*it.mrp,d=gross*it.discount/100,net=Math.max(0,gross-d),tax=net*it.tax/100,amount=net+tax;mrp+=gross;disc+=d;gst+=tax;total+=amount;qtyTotal+=it.qty;rateTotal+=it.qty*(it.mrp*(1-it.discount/100));return `<tr><td>${esc(p.name)}</td><td><input style="width:65px" type="number" min="0.001" step="0.001" value="${it.qty}" onchange="updateRetailLine(${i},'qty',this.value)"></td><td>₹${money(it.mrp)}</td><td><input style="width:75px" type="number" min="0" step=".01" value="${it.discount}" onchange="updateRetailLine(${i},'discount',this.value)"></td><td><input style="width:65px" type="number" min="0" step=".01" value="${it.tax}" onchange="updateRetailLine(${i},'tax',this.value)"></td><td class="mfg-col">${fmtDate(p.manufacturingDate)}</td><td class="exp-col">${fmtDate(p.expiryDate)}</td><td>₹${money(amount)}</td><td><button class="btn red" onclick="retailCart.splice(${i},1);renderRetailBill()">Remove</button></td></tr>`}).join('')||'<tr><td colspan="9">No products added.</td></tr>';$('rtBody').innerHTML += retailCart.length?`<tr class="bill-grand-row"><td>TOTAL</td><td>${money(qtyTotal)}</td><td>₹${money(mrp)}</td><td>₹${money(disc)}</td><td>₹${money(gst)}</td><td></td><td></td><td>₹${money(total)}</td><td></td></tr>`:'';refreshCartPage()}
+function clearRetailBill(){retailCart=[];['rtName','rtMobile','rtVillage'].forEach(id=>$(id).value='');$('rtDate').value=new Date().toISOString().slice(0,10);$('rtDue').value=addDaysISO($('rtDate').value,1);renderRetailBill()}
+async function saveRetailBill(){try{const name=$('rtName').value.trim(),mobile=$('rtMobile').value.trim(),village=$('rtVillage').value.trim();if(!name||!village||!/^\d{10}$/.test(mobile))throw new Error('Enter customer name, 10-digit mobile number and village.');if(!retailCart.length)throw new Error('Add at least one product.');const items=retailCart.map(it=>({productId:it.productId,qty:it.qty,mrp:it.mrp,rate:Math.max(0,it.mrp*(1-it.discount/100)),tax:it.tax}));const inv=await api('/api/invoices',{method:'POST',body:JSON.stringify({customerName:name,address:village,mobile,invoiceDate:$('rtDate').value,dueDate:addDaysISO($('rtDate').value,1),discount:0,delivery:0,adminBilling:true,retailBilling:true,items})});alert('Retail bill saved: '+inv.invoiceNo);clearRetailBill();await load();await loadAdminData()}catch(e){alert(e.message)}}
+
+function saveCustomerAdmin(){
+  if(!/^\d{10}$/.test($("cMobile").value.trim())){alert("Mobile Number must contain exactly 10 digits.");return}const body={name:$("cName").value,address:$("cAddress").value,mobile:$("cMobile").value,gstin:$("cGST").value,id:editingCustomerId};
+  api(editingCustomerId?"/api/customers/"+editingCustomerId:"/api/customers",{method:editingCustomerId?"PUT":"POST",body:JSON.stringify(body)}).then(()=>{clearCustomerAdmin();load().then(loadAdminData);alert("Customer saved.")}).catch(e=>alert(e.message))
+}
+function clearCustomerAdmin(){editingCustomerId=null;["cName","cAddress","cMobile","cGST"].forEach(id=>$(id).value ="")}
+function editCustomer(id){const c=customers.find(x=>x.id===id);editingCustomerId=id;$("cName").value =c.name;$("cAddress").value =c.address;$("cMobile").value =c.mobile;$("cGST").value =c.gstin||""}
+async function deleteCustomer(id){if(confirm("Delete customer?")){await api("/api/customers/"+id,{method:"DELETE"});await load();await loadAdminData()}}
+function openCustomerProfile(id){
+  const c=customers.find(x=>x.id===id);if(!c)return;
+  const bills=invoices.filter(inv=>inv.customer&&inv.customer.mobile===c.mobile).slice().reverse();
+  $("editContent").innerHTML=`<h3>${esc(c.name)}</h3><p>${esc(c.address)}<br>Mobile: ${esc(c.mobile)} · GSTIN: ${esc(c.gstin||"-")}</p><h4>All Customer Invoices (${bills.length})</h4><div class="searchbar"><input id="profileBillDateSearch" placeholder="Search bill by invoice date (DD/MM/YYYY)" oninput="filterCustomerProfileBills('${c.id}')"></div><div class="tablewrap"><table><thead><tr><th>Invoice</th><th>Date</th><th>Items</th><th>Total</th><th>Action</th></tr></thead><tbody id="profileBillRows">${bills.map(inv=>`<tr data-invoice-date="${esc(inv.invoiceDate)}"><td>${esc(inv.invoiceNo)}</td><td>${fmtDate(inv.invoiceDate)}</td><td>${inv.items.length}</td><td>₹${money(inv.grandTotal)}</td><td><button class="btn" onclick="printInvoice('${inv.id}')">Open / Print</button> <button class="btn secondary" onclick="shareInvoice('${inv.id}')">Share</button> <button class="btn orange" onclick="downloadInvoice('${inv.id}')">Download</button></td></tr>`).join("")||'<tr><td colspan="5">No invoices found for this customer.</td></tr>'}</tbody></table></div>`;
+  $("editModal").classList.add("show");
+}
+
+function filterCustomerProfileBills(id){const q=($('profileBillDateSearch')?.value||'').trim().toLowerCase();const c=customers.find(x=>x.id===id);if(!c)return;const bills=invoices.filter(inv=>inv.customer&&inv.customer.mobile===c.mobile);const rows=bills.filter(inv=>{const d=fmtDate(inv.invoiceDate).toLowerCase(),iso=String(inv.invoiceDate||'').toLowerCase();return !q||d.includes(q)||iso.includes(q)});$('profileBillRows').innerHTML=rows.map(inv=>`<tr data-invoice-date="${esc(inv.invoiceDate)}"><td>${esc(inv.invoiceNo)}</td><td>${fmtDate(inv.invoiceDate)}</td><td>${inv.items.length}</td><td>₹${money(inv.grandTotal)}</td><td><button class="btn" onclick="printInvoice('${inv.id}')">Open / Print</button> <button class="btn secondary" onclick="shareInvoice('${inv.id}')">Share</button> <button class="btn orange" onclick="downloadInvoice('${inv.id}')">Download</button></td></tr>`).join('')||'<tr><td colspan="5">No invoices found for this date.</td></tr>'}
+function openCustomerInvoice(id){const inv=customerInvoices.find(x=>x.id===id);if(!inv)return;const w=window.open("","_blank");w.document.write(billHtml(inv));w.document.close();w.focus()}
+function printCustomerInvoice(id){const inv=customerInvoices.find(x=>x.id===id);if(!inv)return;const w=window.open("","_blank");if(!w){alert("Please allow pop-ups to print the invoice.");return}w.document.write(billHtml(inv));w.document.close();w.focus();w.onafterprint=()=>setTimeout(()=>w.close(),250);setTimeout(()=>{if(!w.closed)w.print()},500)}
+function downloadCustomerInvoice(id){const inv=customerInvoices.find(x=>x.id===id);if(!inv)return;const blob=new Blob([billHtml(inv)],{type:"text/html"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`${inv.invoiceNo}.html`;a.click();URL.revokeObjectURL(a.href)}
+function renderAdminCustomers(){const q=($("customerManagementSearch")?.value||"").toLowerCase();$("adminCustomerBody").innerHTML=customers.filter(c=>[c.name,c.mobile,c.address].some(v=>String(v||"").toLowerCase().includes(q))).map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(c.address)}</td><td>${esc(c.mobile)}</td><td>${esc(c.gstin||"")}</td><td>${c.hasLogin?"Registered":"No login"}</td><td><button class="btn" onclick="resetCustomerPassword('${c.id}')">Reset Password</button> <button class="btn" onclick="openCustomerProfile('${c.id}')">Profile / Bills</button> <button class="btn" onclick="editCustomer('${c.id}')">Edit</button> <button class="btn red" onclick="deleteCustomer('${c.id}')">Delete</button></td></tr>`).join("")||"<tr><td colspan=6>No customers.</td></tr>"}
+async function resetCustomerPassword(id){const pw=prompt("Enter a new temporary password (minimum 6 characters). The existing password cannot be viewed.");if(pw===null)return;if(pw.length<6){alert("Password must be at least 6 characters.");return}try{await api("/api/admin/customers/"+id+"/reset-password",{method:"POST",body:JSON.stringify({password:pw})});alert("Customer password reset successfully. Share the new password securely with the customer.")}catch(e){alert(e.message)}}
+
+let invoiceFilter="all";
+function renderAdminInvoices(){
+  const q=($("invoiceManagementSearch")?.value||"").toLowerCase();
+  const dateQ=($("invoiceDateManagementSearch")?.value||"").trim().toLowerCase();
+  $("adminInvoiceBody").innerHTML=invoices.filter(inv=>(!q||[inv.invoiceNo,inv.customer?.name,inv.customer?.mobile].some(v=>String(v||"").toLowerCase().includes(q)))&&(!dateQ||fmtDate(inv.invoiceDate).toLowerCase().includes(dateQ)||String(inv.invoiceDate||"").toLowerCase().includes(dateQ))&&(invoiceFilter==="all"||(invoiceFilter==="retail"?!!inv.retailBilling:invoiceFilter==="customer"?!inv.adminBilling:!!inv.adminBilling&&!inv.retailBilling))).slice().reverse().map(inv=>`<tr><td><b>${esc(inv.invoiceNo)}</b></td><td>${fmtDate(inv.invoiceDate)}</td><td>${esc(inv.customer.name)}</td><td>${esc(inv.customer.mobile)}</td><td>${inv.items.length}</td><td>₹${money(inv.grandTotal)}</td><td><div class="actions"><button class="btn" onclick="openInvoiceEdit('${inv.id}')">Edit Bill</button><button class="btn orange" onclick="showInvoiceProfit('${inv.id}')">P</button><button class="btn secondary" onclick="shareInvoice('${inv.id}')">Share</button><button class="btn green" onclick="printInvoice('${inv.id}')">Print</button><button class="btn red" onclick="deleteInvoice('${inv.id}')">Delete</button></div></td></tr>`).join("")||"<tr><td colspan=7>No invoices.</td></tr>";
+}
+
+function renderDeletedInvoices(){const body=$("deletedInvoiceBody");if(!body)return;body.innerHTML=deletedInvoices.slice().reverse().map(inv=>`<tr><td>${esc(inv.invoiceNo)}</td><td>${fmtDate(inv.invoiceDate)}</td><td>${esc(inv.customer?.name||"")}</td><td>${esc(inv.customer?.mobile||"")}</td><td>₹${money(inv.grandTotal)}</td><td>${inv.deletedAt?new Date(inv.deletedAt).toLocaleString("en-GB"):"-"}</td><td><div class="actions"><button class="btn" onclick="openDeletedBill('${inv.id}')">Open Bill</button><button class="btn red" onclick="permanentlyDeleteInvoice('${inv.id}')">Delete Permanently</button></div></td></tr>`).join("")||'<tr><td colspan="7">No deleted bills.</td></tr>'}
+function openDeletedBill(id){const inv=deletedInvoices.find(x=>x.id===id);if(!inv)return;const w=window.open("","_blank");if(!w){alert("Please allow pop-ups to open the deleted bill.");return}w.document.open();w.document.write(billHtml(inv));w.document.close();w.focus()}
+async function permanentlyDeleteInvoice(id){const inv=deletedInvoices.find(x=>x.id===id);if(!inv)return;if(!confirm(`Permanently delete invoice ${inv.invoiceNo}? This cannot be undone.`))return;try{await api("/api/deleted-invoices/"+id,{method:"DELETE"});deletedInvoices=deletedInvoices.filter(x=>x.id!==id);renderDeletedInvoices();alert("Bill permanently deleted.")}catch(e){alert(e.message)}}
+
+function showLowStock(){
+  adminPanel("low");const limit=5;$("lowStockBody").innerHTML=adminProducts.filter(p=>Number(p.stock)<limit).map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.batchNo)}</td><td class="${p.stock<0?"negative":"low"}"><b>${p.stock}</b></td><td>${limit}</td><td><button class="btn" onclick="editProduct('${p.id}')">Open Edit</button></td></tr>`).join("")||"<tr><td colspan=5>No low stock products.</td></tr>";
+}
+
+let invoiceEditItems=[];
+function invoiceForm(inv){
+  invoiceEditItems=inv.items.map(x=>({...x}));
+  const rows=invoiceEditItems.map((it,i)=>`<tr><td>${esc(it.name)}</td><td><input type="number" min="0" step="0.01" value="${it.mrp}" id="emrp${i}" style="width:90px"></td><td><input type="number" min="0" step="0.01" value="${it.rate}" id="erate${i}" oninput="updateInvoiceProfit()" style="width:90px"></td><td><span class="p-faint">₹${money(it.purchaseRate||0)}</span></td><td class="mfg-col">${fmtDate(it.manufacturingDate)||"-"}</td><td class="exp-col">${fmtDate(it.expiryDate)||"-"}</td><td><input type="number" min="0.001" step="0.001" value="${it.qty}" id="eq${i}" oninput="updateInvoiceProfit()" style="width:75px"></td><td><span class="p-faint" id="eprofit${i}">₹${money((Number(it.rate||0)-Number(it.purchaseRate||0))*Number(it.qty||0))}</span></td><td><input type="number" min="0" step="0.01" value="${it.tax}" id="etax${i}" style="width:70px"></td><td><button class="btn red" onclick="removeEditedInvoiceItem(${i})">Remove</button></td></tr>`).join("");
+  return `<div class="grid">
+    <div><label>Invoice No.</label><input id="eiNo" value="${esc(inv.invoiceNo)}"></div><div><label>Invoice Date</label><input id="eiDate" type="date" lang="en-GB" value="${esc(inv.invoiceDate)}" onchange="$('eiDue').value=addDaysISO(this.value,1)"></div><div><label>Due Date</label><input id="eiDue" type="date" lang="en-GB" value="${esc(inv.dueDate||addDaysISO(inv.invoiceDate,1))}"></div><div><label>Previous Pending Amount</label><input id="eiPending" type="number" min="0" step="0.01" inputmode="decimal" value="${money(inv.previousPending||0)}" onwheel="this.blur()"></div>
+    <div><label>Customer Name *</label><input id="eiName" value="${esc(inv.customer.name)}"></div><div><label>Address *</label><input id="eiAddress" value="${esc(inv.customer.address)}"></div><div><label>Mobile *</label><input id="eiMobile" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" value="${esc(inv.customer.mobile)}"></div><div><label>GSTIN</label><input id="eiGST" value="${esc(inv.customer.gstin||"")}"></div>
+  </div>
+  <h3>Items</h3><p class="muted">Admin can change Quantity, MRP, Rate and Tax, or add more products to this invoice.</p><div class="grid"><div style="grid-column:span 2"><label>Search Product</label><input id="eiProductSearch" placeholder="Search product name / HSN / MRP" oninput="renderEditProductCards()"><button class="btn secondary" type="button" onclick="$('eiProductSearch').value='';renderEditProductCards()">Clear</button><select id="eiAddProduct" class="hidden">${adminProducts.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join("")}</select></div><div style="align-self:end"><button class="btn" type="button" onclick="toggleEditProductList()">Add Product</button></div></div><div id="eiProductCards" class="products products-scroll hidden"></div><div id="invoiceProfitSummary" class="profit-summary">Estimated final profit: ₹0.00</div><table><thead><tr><th>Product</th><th>MRP</th><th>Rate</th><th>P</th><th class="mfg-col">MFG</th><th class="exp-col">EXP</th><th>Qty</th><th>Line P</th><th>Tax %</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table>
+  <div class="grid" style="margin-top:12px"><div><label>Discount</label><input id="eiDiscount" type="number" value="${inv.discount||0}" oninput="updateInvoiceProfit()"></div></div>
+  <div class="actions"><button class="btn green" onclick="saveEditedInvoice('${inv.id}')">Save</button><button class="btn secondary" onclick="printInvoice('${inv.id}')">Print</button><button class="btn orange" onclick="downloadInvoice('${inv.id}')">Download Bill</button><button class="btn red" onclick="deleteInvoice('${inv.id}')">Delete</button></div>`;
+}
+function toggleEditProductList(){const el=$("eiProductCards");el.classList.remove("hidden");renderEditProductCards();el.scrollIntoView({behavior:"smooth",block:"nearest"})}
+let pendingEditProductId=null;
+function renderEditProductCards(){const q=($("eiProductSearch")?.value||"").trim().toLowerCase();const list=adminProducts.filter(p=>(!q||[p.name,p.hsn,String(p.mrp)].some(v=>String(v||"").toLowerCase().includes(q))));$("eiProductCards").innerHTML=list.map(p=>`<div class="product">${p.image?`<img src="${esc(p.image)}" alt="" onerror="this.style.display='none'">`:''}<h3>${esc(p.name)}</h3><div class="price">MRP ₹${money(p.mrp)} · Rate ₹${money(p.rate)} · <span class="p-faint">P ₹${money(p.purchaseRate)}</span>${settings.showMfg!==false?` · MFG ${fmtDate(p.manufacturingDate)||"-"}`:""}${settings.showExp!==false?` · EXP ${fmtDate(p.expiryDate)||"-"}`:""}</div><button class="btn" type="button" onclick="chooseEditedProduct('${p.id}');return false">Add</button></div>`).join("")||"<p>No matching products.</p>"}
+function filterEditProductOptions(){const q=$('eiProductSearch').value.trim().toLowerCase();const p=adminProducts.find(x=>[x.name,x.hsn,String(x.mrp)].some(v=>String(v||'').toLowerCase().includes(q))||String(x.name).toLowerCase()===q);if(p)$('eiAddProduct').value=p.id}
+function removeEditedInvoiceItem(i){invoiceEditItems.splice(i,1);const inv=invoices.find(x=>x.id===editingInvoiceId);$('editContent').innerHTML=invoiceForm({...inv,items:invoiceEditItems});updateInvoiceProfit()}
+function chooseEditedProduct(id){const p=adminProducts.find(x=>String(x.id)===String(id));if(!p){alert('Product not found. Please refresh product list.');return}pendingProductId=null;pendingAdminProductId=null;pendingAdminFree=false;pendingEditProductId=p.id;pendingQtyTarget='edit';$('qtyProductName').textContent=p.name;$('addQtyInput').value='0';$('addQtyModal').classList.add('show');setTimeout(()=>$('addQtyInput').focus(),80)}
+function addProductToEditedInvoice(qty){const p=adminProducts.find(x=>x.id===pendingEditProductId);if(!p)return;invoiceEditItems.push({productId:p.id,name:p.name,batchNo:p.batchNo,hsn:p.hsn,manufacturingDate:p.manufacturingDate||"",expiryDate:p.expiryDate||"",qty,mrp:Number(p.mrp||0),rate:Number(p.rate||0),tax:Number(p.tax||0),purchaseRate:Number(p.purchaseRate||0)});pendingEditProductId=null;pendingQtyTarget='';$('addQtyModal').classList.remove('show');const inv=invoices.find(x=>x.id===editingInvoiceId);$('editContent').innerHTML=invoiceForm({...inv,items:invoiceEditItems});updateInvoiceProfit()}
+function updateInvoiceProfit(){
+  const inv=invoices.find(x=>x.id===editingInvoiceId);if(!inv)return;
+  let sales=0,cost=0;
+  invoiceEditItems.forEach((it,i)=>{const qty=Math.max(0,Number($("eq"+i)?.value)||0),rate=Math.max(0,Number($("erate"+i)?.value)||0),p=adminProducts.find(x=>x.id===it.productId);const purchase=Number(it.purchaseRate??p?.purchaseRate??0);sales+=qty*rate;cost+=qty*purchase;const line=$("eprofit"+i);if(line)line.textContent="₹"+money(qty*(rate-purchase));});
+  const discount=Math.max(0,Number($("eiDiscount")?.value)||0);$("invoiceProfitSummary").textContent=`Estimated final profit: ₹${money(sales-cost-discount)} (Sales ₹${money(sales)} − Purchase cost ₹${money(cost)} − Discount ₹${money(discount)})`;
+}
+function openInvoiceEdit(id){const inv=invoices.find(x=>x.id===id);if(!inv)return;editingInvoiceId=id;$("editContent").innerHTML=invoiceForm(inv);$("editModal").classList.add("show");renderEditProductCards();updateInvoiceProfit()}
+function closeModal(){$("editModal").classList.remove("show");editingInvoiceId=null;pendingEditProductId=null;if(pendingQtyTarget==="edit")closeAddQty()}
+async function saveEditedInvoice(id){
+  try{
+    const old=invoices.find(x=>x.id===id);
+    const items=invoiceEditItems.map((it,i)=>({productId:it.productId,qty:Math.max(0.001,Math.round((Number(($('eq'+i)?.value ?? ""))||1)*1000)/1000),mrp:Math.max(0,Number(($('emrp'+i)?.value ?? ""))||0),rate:Math.max(0,Number(($('erate'+i)?.value ?? ""))||0),tax:Math.max(0,Number(($('etax'+i)?.value ?? ""))||0)}));
+    const body={invoiceNo:$('eiNo').value,invoiceDate:$('eiDate').value,dueDate:$('eiDue').value,customerName:$('eiName').value,address:$('eiAddress').value,mobile:$('eiMobile').value,gstin:$('eiGST').value,discount:$('eiDiscount').value,delivery:0,dueDate:$('eiDue').value,previousPending:$('eiPending').value,adminEdit:true,items};
+    await api("/api/invoices/"+id,{method:"PUT",body:JSON.stringify(body)});closeAddQty();closeModal();await load();await loadAdminData()
+  }catch(e){alert(e.message)}
+}
+async function saveInvoiceQuick(id){openInvoiceEdit(id)}
+async function deleteInvoice(id){const inv=invoices.find(x=>x.id===id);if(!inv)return;if(!confirm(`Move invoice ${inv.invoiceNo} to Deleted Bills? Stock will be restored.`))return;try{await api('/api/invoices/'+id,{method:'DELETE'});closeModal();await load();await loadAdminData();alert('Invoice moved to Deleted Bills. Stock restored.')}catch(e){alert(e.message)}}
+
+async function customerRegister(){try{if(!/^\d{10}$/.test($('authMobile').value.trim())||!$('authPassword').value)throw new Error('Username/mobile and password are both required. Enter a 10 digit mobile number.');const body={name:$('authName').value,address:$('authAddress').value,mobile:$('authMobile').value,gstin:$('authGST').value,password:$('authPassword').value};const r=await api('/api/auth/register',{method:'POST',body:JSON.stringify(body)});customerToken=r.token;localStorage.setItem('shivCustomerToken',customerToken);loggedCustomer=r.customer;applyLoggedCustomer();await loadCustomerInvoices();alert('Registration successful.')}catch(e){alert(e.message)}}
+async function customerLogin(){try{if(!/^\d{10}$/.test($('authMobile').value.trim())||!$('authPassword').value)throw new Error('Username/mobile and password are both required. Enter a 10 digit mobile number.');const r=await api('/api/auth/login',{method:'POST',body:JSON.stringify({mobile:$('authMobile').value,password:$('authPassword').value})});customerToken=r.token;localStorage.setItem('shivCustomerToken',customerToken);loggedCustomer=r.customer;applyLoggedCustomer();await loadCustomerInvoices();alert('Login successful.')}catch(e){alert(e.message)}}
+async function refreshCustomerSession(){try{const r=await api('/api/auth/me');loggedCustomer=r.customer;applyLoggedCustomer();await loadCustomerInvoices()}catch(e){customerToken='';localStorage.removeItem('shivCustomerToken')}}
+function applyLoggedCustomer(){if(!loggedCustomer)return;$('customerLoggedIn').classList.remove('hidden');$('customerLoggedIn').innerHTML=`Logged in as <b>${esc(loggedCustomer.name)}</b> · ${esc(loggedCustomer.mobile)} <button class="btn secondary" onclick="customerLogout()">Logout</button>`;$('customerAuthForms').classList.add('hidden');$('customerSavedInvoices').classList.remove('hidden');$('customerName').value=loggedCustomer.name;$('customerAddress').value=loggedCustomer.address;$('customerMobile').value=loggedCustomer.mobile;$('customerGSTIN').value=loggedCustomer.gstin||'';updateBillHeader()}
+async function customerLogout(){try{await api('/api/auth/logout',{method:'POST'})}catch{}customerToken='';loggedCustomer=null;customerInvoices=[];localStorage.removeItem('shivCustomerToken');$('customerLoggedIn').classList.add('hidden');$('customerAuthForms').classList.remove('hidden');$('customerSavedInvoices').classList.add('hidden')}
+async function loadCustomerInvoices(){try{customerInvoices=await api('/api/customer/invoices');$('customerSavedInvoices').classList.remove('hidden');renderCustomerSavedBills()}catch(e){console.warn(e.message)}}
+function renderCustomerSavedBills(){const q=($('customerSavedBillSearch')?.value||'').trim().toLowerCase();const rows=customerInvoices.slice().reverse().filter(inv=>[inv.invoiceNo,inv.invoiceDate].some(v=>String(v||'').toLowerCase().includes(q)));$('customerInvoiceBody').innerHTML=rows.map(inv=>`<tr><td>${esc(inv.invoiceNo)}</td><td>${fmtDate(inv.invoiceDate)}</td><td>${fmtDate(addDaysISO(inv.invoiceDate,1))}</td><td>${inv.items.length}</td><td>₹${money(inv.grandTotal)}</td><td><button class="btn" onclick="openCustomerInvoice('${inv.id}')">Open</button> <button class="btn secondary" onclick="printCustomerInvoice('${inv.id}')">Print</button> <button class="btn orange" onclick="shareCustomerInvoice('${inv.id}')">Share</button> <button class="btn orange" onclick="downloadCustomerInvoice('${inv.id}')">Download</button></td></tr>`).join('')||'<tr><td colspan="6">No matching saved bills.</td></tr>'}
+async function lookupCustomerInvoice(){const no=$('customerInvoiceLookup').value.trim();if(!no)return;try{const x=await api('/api/invoices/lookup/'+encodeURIComponent(no));$('customerName').value=x.customer.name;$('customerAddress').value=x.customer.address;$('customerMobile').value=x.customer.mobile;$('customerGSTIN').value=x.customer.gstin||'';$('invoiceNo').value=x.invoiceNo;$('invoiceDate').value=x.invoiceDate;$('dueDate').value=addDaysISO(x.invoiceDate,1);updateBillHeader();$('customerInvoiceLookupMsg').textContent='Customer details filled from '+x.invoiceNo+'.'}catch(e){$('customerInvoiceLookupMsg').textContent=e.message}}
+
+function reportRows(){
+  const from=$("reportFrom").value, to=$("reportTo").value, name=$("reportName").value.trim().toLowerCase(), customer=($("reportCustomer")?.value||"").trim().toLowerCase(), mrpRaw=$("reportMrp").value.trim();
+  const mrpFilter=mrpRaw===""?null:Number(mrpRaw);
+  const rows=[];
+  invoices.forEach(inv=>{
+    const date=String(inv.invoiceDate||"");
+    if(from && date<from) return; if(to && date>to) return;
+    if(customer && ![inv.customer?.name,inv.customer?.mobile].some(v=>String(v||"").toLowerCase().includes(customer))) return;
+    inv.items.forEach(it=>{
+      if(name && !String(it.name||"").toLowerCase().includes(name)) return;
+      if(mrpFilter!==null && Math.abs(Number(it.mrp||0)-mrpFilter)>0.001) return;
+      rows.push({date,month:date.slice(0,7),name:it.name||"",mrp:Number(it.mrp||0),qty:Number(it.qty||0),amount:Number(it.amount||0),rate:Number(it.rate||0),purchaseRate:Number(it.purchaseRate||0),profit:Number(it.amount||0)-Number(it.purchaseRate||0)*Number(it.qty||0),invoice:inv.invoiceNo});
+    });
+  });
+  return rows;
+}
+function renderReportCustomerList(){const el=$("reportCustomerList");if(el)el.innerHTML=customers.map(c=>`<option value="${esc(c.name)}"></option><option value="${esc(c.mobile)}"></option>`).join("")}
+function renderReport(){
+ const rows=reportRows(),ordered=rows.slice().sort((a,b)=>a.date.localeCompare(b.date)||a.name.localeCompare(b.name));
+ const monthLabel=v=>{if(!v)return "";const [y,m]=v.split("-");return `${m}/${y}`};
+ $("reportHead").innerHTML='<tr><th>Date</th><th>Month</th><th>Product Name</th><th>MRP</th><th>Qty</th><th>Selling Rate</th><th>Sales Amount</th><th>Line P</th><th>Invoice</th></tr>';
+ $("reportBody").innerHTML=ordered.map(r=>`<tr><td>${fmtDate(r.date)}</td><td>${monthLabel(r.month)}</td><td>${esc(r.name)}</td><td>₹${money(r.mrp)}</td><td>${r.qty}</td><td>₹${money(r.rate)}</td><td>₹${money(r.amount)}</td><td><span class="p-faint">₹${money(r.profit)}</span></td><td>${esc(r.invoice)}</td></tr>`).join("")||'<tr><td colspan="9" style="text-align:center">No sales found.</td></tr>';
+ const qty=rows.reduce((s,r)=>s+r.qty,0),sales=rows.reduce((s,r)=>s+r.amount,0),profit=rows.reduce((s,r)=>s+r.profit,0),rateTotal=rows.reduce((s,r)=>s+r.rate,0),mrpTotal=rows.reduce((s,r)=>s+r.mrp,0),bills=new Set(rows.map(r=>r.invoice)).size;
+ if(rows.length)$ ("reportBody").innerHTML += `<tr style="font-weight:bold;background:#f1f5f9"><td colspan="4">TOTAL</td><td>${qty}</td><td>₹${money(rateTotal)}</td><td>₹${money(sales)}</td><td><span class="p-faint">₹${money(profit)}</span></td><td>${bills} Bills</td></tr>`;
+ $("reportSummary").textContent=`Sales: ${rows.length} product entries · Qty: ${qty} · Sales Amount: ₹${money(sales)} · Profit: ₹${money(profit)} · Bills: ${bills}`;
+}
+function clearReportFilters(){$("reportFrom").value="";$("reportTo").value="";$("reportName").value="";$("reportMrp").value="";$("reportCustomer").value="";renderReport()}
+function printReport(){const title=$("reportType").selectedOptions[0].textContent;const agencyName=settings.agencyName||"SHREE AGENCY";const html=`<!doctype html><html><head><title>${title} Sales Report</title><style>body{font-family:Arial;padding:25px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #999;padding:7px}th{background:#eee}@media(max-width:600px){body{padding:0}header{padding:12px;display:flex;flex-wrap:wrap;gap:8px}.wrap{padding:10px;margin:0}.card{padding:12px}.grid,.grid2,.statgrid{grid-template-columns:minmax(0,1fr)}input,select,textarea,button{max-width:100%;font-size:16px}.actions .btn{flex:1 1 auto}.tablewrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.tablewrap table{min-width:720px}.layout{display:block}.total{width:100%;max-width:100%;margin-top:14px}.left{min-width:0}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:380px){.products{grid-template-columns:1fr}}
+@media(max-width:600px){header h1{font-size:20px}.welcome{padding:24px 14px}.welcome h2{font-size:23px}.billhead{flex-direction:column}.billhead .right{text-align:left}.modal{padding:8px}.modalbox{padding:12px;max-height:96vh}.actions{gap:8px}.actions .btn{min-width:calc(50% - 8px)}.product{width:100%;min-width:0}.products.search-results-vertical .product{grid-template-columns:72px minmax(0,1fr);}.products.search-results-vertical .product img{width:72px;height:72px;grid-row:1/5}.products.search-results-vertical .product .actions{grid-column:2;grid-row:auto}.footer-details{grid-template-columns:1fr}.footer-item{justify-content:flex-start!important;text-align:left!important}.agency-footer{padding:14px}}
+@media(hover:none){button,.btn{min-height:42px}input,select{min-height:42px}} 
+</style></head><body><h2>${esc(agencyName)} - ${title} Sales Report</h2><p>${esc($("reportSummary").textContent)}</p><table>${$("reportHead").innerHTML}${$("reportBody").innerHTML}</table></body></html>`;const w=window.open("","_blank");w.document.write(html);w.document.close();w.focus();setTimeout(()=>w.print(),250)}
+
+function numberToWordsINR(value){
+ const n=Math.round(Number(value)||0),ones=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"],tens=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+ const two=x=>x<20?ones[x]:tens[Math.floor(x/10)]+(x%10?" "+ones[x%10]:"");
+ const three=x=>(x>=100?ones[Math.floor(x/100)]+" Hundred"+(x%100?" ":""):"")+ (x%100?two(x%100):"");
+ if(!n)return "Zero Rupees Only";
+ let x=n,out=[];const crore=Math.floor(x/10000000);x%=10000000;const lakh=Math.floor(x/100000);x%=100000;const thousand=Math.floor(x/1000);x%=1000;
+ if(crore)out.push(two(crore)+" Crore");if(lakh)out.push(two(lakh)+" Lakh");if(thousand)out.push(two(thousand)+" Thousand");if(x)out.push(three(x));
+ return out.join(" ")+" Rupees Only";
+}
+function billHtml(inv){
+ const a=settings||{},name=a.agencyName||'SHREE AGENCY',address=a.agencyAddress||'Shingnapur, Tal. Man, Dist. Satara, Maharashtra';
+ const mobile=a.agencyMobile||'',email=a.agencyEmail||'',gstin=a.agencyGSTIN||'',showMfg=a.showMfg!==false,showExp=a.showExp!==false,fields=a.billFields||{};
+ const pending=Number(inv.previousPending||0),payable=Number(inv.grandTotal||0)+pending;
+ let qtyTotal=0,rateTotal=0,amountTotal=0,mrpTotal=0;
+ const rows=inv.items.map((i,n)=>{qtyTotal+=Number(i.qty||0);rateTotal+=Number(i.rate||0)*Number(i.qty||0);amountTotal+=Number(i.amount||0);mrpTotal+=Number(i.mrp||0)*Number(i.qty||0);return `<tr><td>${n+1}</td><td>${esc(i.name)}</td><td>${esc(i.hsn||'-')}</td><td>${esc(i.batchNo||'-')}</td>${showMfg?`<td>${fmtDate(i.manufacturingDate)||'-'}</td>`:''}${showExp?`<td>${fmtDate(i.expiryDate)||'-'}</td>`:''}<td>${money(i.qty)}</td><td>₹${money(i.mrp)}</td>${inv.retailBilling?`<td>₹${money(i.discount||0)}</td>`:''}<td>₹${money(i.rate)}</td><td>${money(i.tax)}%</td><td>₹${money(i.amount)}</td></tr>`}).join('');
+ const terms=a.terms||'',showTerms=a.showTerms!==false&&!!terms,signature=a.authorizedSignature||'',showSignature=a.showSignature!==false&&!!signature;
+ const css={heading:a.billHeadingColor||'#000000',agencyName:a.agencyNameColor||'#000000',table:a.billTableColor||'#e2e8f0',subtotal:a.subtotalColor||'#000000',discount:a.discountColor||'#000000',gst:a.gstColor||'#000000',billTotal:a.billTotalColor||'#000000',pending:a.pendingColor||'#000000',grandText:a.grandTotalTextColor||'#000000',grandBg:a.grandTotalColor||'#e5e7eb'};
+ const totals=[['subtotal','Subtotal',inv.subtotal,css.subtotal],['discount','Discount',inv.discount,css.discount],['gst','GST / Tax',inv.gst,css.gst],['billTotal','Bill Total',inv.grandTotal,css.billTotal],['previousPending','Previous Pending',pending,css.pending]];
+ const totalsHtml=totals.filter(([k])=>fields[k]!==false).map(([k,label,value,color])=>`<div class="total-line" style="color:${color}"><span>${label}</span><b>₹${money(value)}</b></div>`).join('')+(fields.grandTotal===false?'':`<div class="grand" style="background:${css.grandBg};color:${css.grandText}"><span>Grand Total / Payable</span><b>₹${money(payable)}</b></div>`);
+ const agencyContacts=[mobile?`Mobile: ${esc(mobile)}`:'',email?`Email: ${esc(email)}`:'',gstin?`GSTIN: ${esc(gstin)}`:''].filter(Boolean).join('<span class="sep">|</span>');
+ const billLogo=(a.showLogoOnBill!==false&&a.logo)?`<img class="bill-logo" src="${a.logo}" alt="Agency Logo">`:"";
+ return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(inv.invoiceNo)}</title><style>
+ *{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;padding:22px;color:#111;margin:0}h1{margin:0 0 5px;color:${css.agencyName};font-size:23px}.bill-brand{display:flex;align-items:center;gap:14px;margin-bottom:8px}.bill-logo{width:76px;height:76px;object-fit:contain;border:1px solid #e5e7eb;border-radius:8px;padding:3px}.agency-address{font-size:12px;margin:4px 0}.agency-contacts{display:flex;flex-wrap:wrap;gap:8px;font-size:11px;margin:6px 0 12px}.sep{color:#94a3b8}.invoice-overview{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;border-top:1px solid #bbb;border-bottom:1px solid #bbb;padding:6px 0 3px;margin-top:7px}.customer{font-size:12px;line-height:1.6;flex:1}.customer-line{display:flex;gap:18px;flex-wrap:wrap}.customer-line span{min-width:180px}.invoice-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-width:52%;text-align:left;font-size:12px}.invoice-meta .invoice-title{grid-column:1/-1}.invoice-field{display:flex;flex-direction:column;gap:5px;min-width:0}.invoice-field b{white-space:nowrap}.invoice-field span{overflow-wrap:anywhere}.bill-to-title{display:block;margin-bottom:5px;font-size:14px}.invoice-overview .customer{order:0;text-align:left;min-width:0}.invoice-overview .invoice-meta{order:1;text-align:left;min-width:52%}.invoice-line{display:grid;grid-template-columns:1fr 1fr;gap:10px}.invoice-line span{min-width:0}.invoice-line:last-child{grid-template-columns:1fr}.invoice-line:last-child span{text-align:right}.customer-line span{min-width:0;flex:1 1 40%}.invoice-title{color:${css.heading};font-size:15px;letter-spacing:1px;margin-bottom:2px;display:block}table{width:100%;border-collapse:collapse;margin-top:4px}th,td{border:1px solid #999;padding:6px;text-align:left;font-size:11px}th{background:${css.table};color:#111}.bill-grand-row{font-weight:bold;background:#f1f5f9}.layout{display:flex;gap:20px;align-items:flex-start;margin-top:18px}.left{flex:1;min-width:200px;font-size:11px;line-height:1.6}.total{width:300px;max-width:48%;margin-left:auto;font-size:12px}.total-line,.grand{display:flex;justify-content:space-between;gap:12px;padding:7px;border-bottom:1px solid #ddd}.grand{font-weight:bold;font-size:16px;margin-top:5px}.sign{margin-top:35px}.words{margin-top:10px;font-weight:bold}@media print{body{padding:0}.layout{break-inside:avoid}tr{break-inside:avoid}}@media(max-width:650px){body{padding:10px}.layout{display:block}.total{width:100%;max-width:100%;margin-top:14px}.customer-line{display:grid;grid-template-columns:1fr 1fr}.customer-line span{display:block;min-width:0}.invoice-overview{display:grid;grid-template-columns:1fr 1fr;gap:8px}.invoice-meta{margin-top:0;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.invoice-line{grid-template-columns:1fr}.invoice-overview-live{grid-template-columns:1fr 1fr}.invoice-info-line{grid-template-columns:1fr}}
+ </style></head><body>
+ <div class="bill-brand">${billLogo}<div><h1>${esc(name)}</h1><div class="agency-address">${esc(address)}</div><div class="agency-contacts">${agencyContacts}</div></div></div>
+ <div class="invoice-overview"><div class="customer"><div class="customer-line"><span><b>${esc(inv.customer?.name||'')}</b></span><span>Mobile: ${esc(inv.customer?.mobile||'')}</span></div><div class="customer-line"><span>Address: ${esc(inv.customer?.address||'')}</span><span>GSTIN: ${esc(inv.customer?.gstin||'-')}</span></div></div><div class="invoice-meta"><div class="invoice-field"><b>Invoice No.</b><span>${esc(inv.invoiceNo)}</span></div><div class="invoice-field"><b>Invoice Date</b><span>${fmtDate(inv.invoiceDate)}</span></div><div class="invoice-field"><b>Due Date</b><span>${fmtDate(inv.dueDate||'')}</span></div></div></div>
+ <table><thead><tr><th>SR.</th><th>ITEMS</th><th>HSN</th><th>BATCH</th>${showMfg?'<th>MFG</th>':''}${showExp?'<th>EXP</th>':''}<th>QTY</th><th>MRP</th>${inv.retailBilling?'<th>DISC/UNIT</th>':''}<th>RATE</th><th>TAX</th><th>AMOUNT</th></tr></thead><tbody>${rows}<tr class="bill-grand-row"><td colspan="${4+(showMfg?1:0)+(showExp?1:0)}">TOTAL</td><td>${money(qtyTotal)}</td><td>₹${money(mrpTotal)}</td>${inv.retailBilling?'<td></td>':''}<td>₹${money(rateTotal)}</td><td></td><td>₹${money(amountTotal)}</td></tr></tbody></table>
+ <div class="layout"><div class="left"><div class="words">Total Amount in Words: ${esc(numberToWordsINR(payable))}</div>${showTerms?`<p><b>Terms &amp; Conditions:</b><br>${esc(terms)}</p>`:''}${showSignature?`<div class="sign"><b>${esc(signature)}</b><br>${esc(name)}</div>`:''}</div><div class="total">${totalsHtml}</div></div>
+ </body></html>`;
+}
+function printInvoice(id){const inv=invoices.find(x=>x.id===id);if(!inv)return;const w=window.open("","_blank");if(!w){alert("Please allow pop-ups to print the invoice.");return}w.document.write(billHtml(inv));w.document.close();w.focus();w.onafterprint=()=>setTimeout(()=>w.close(),250);setTimeout(()=>{if(!w.closed)w.print()},500)}
+function downloadInvoice(id){const inv=invoices.find(x=>x.id===id);const blob=new Blob([billHtml(inv)],{type:"text/html"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`${inv.invoiceNo}.html`;a.click();URL.revokeObjectURL(a.href)}
+function updateStats(){ $("statProducts").textContent=products.length;$("statCustomers").textContent=customers.length;$("statInvoices").textContent=invoices.length;$("statLow").textContent=products.filter(p=>Number(p.stock)<=Number(settings.lowStockThreshold)).length }
+
+$("invoiceDate").addEventListener("change",()=>{$("dueDate").value=addDaysISO($("invoiceDate").value,1)});
+$("abInvoiceDate").addEventListener("change",()=>{$("abDueDate").value=addDaysISO($("abInvoiceDate").value,1)});
+$("rtDate").addEventListener("change",()=>{$("rtDue").value=addDaysISO($("rtDate").value,1)});
+$("rtName").addEventListener("change",()=>{const q=$("rtName").value.trim().toLowerCase();const c=customers.find(x=>String(x.name||"").toLowerCase()===q||String(x.mobile||"")===q);if(c)$("rtName").value=c.name;if(c){$("rtMobile").value=c.mobile||"";$("rtVillage").value=c.address||""}});
+$("abProductSearch").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();adminProductSearchChanged()}});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter" || e.target.tagName==="TEXTAREA" || e.target.id==="abProductSearch")return;
+  const el=e.target;if(!["INPUT","SELECT"].includes(el.tagName))return;
+  const scope=el.closest(".grid")||el.closest(".card")||el.parentElement;
+  if(!scope)return;
+  const fields=[...scope.querySelectorAll("input:not([type=hidden]):not([disabled]),select:not([disabled]),button:not([disabled])")].filter(x=>x.offsetParent!==null);
+  const next=fields[fields.indexOf(el)+1];if(next){e.preventDefault();next.focus();if(next.select)next.select()}
+});
+load().catch(e=>alert(e.message));
+
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll('input[placeholder*="Search"],input[id*="Search"],input[id*="search"]').forEach(input=>{if(input.dataset.clearReady)return;input.dataset.clearReady="1";const wrap=document.createElement("span");wrap.style.cssText="display:inline-flex;align-items:center;gap:5px";input.parentNode.insertBefore(wrap,input);wrap.appendChild(input);const btn=document.createElement("button");btn.type="button";btn.className="btn secondary";btn.textContent="Clear";btn.onclick=()=>{input.value="";input.dispatchEvent(new Event("input",{bubbles:true}));input.dispatchEvent(new Event("change",{bubbles:true}));input.focus()};wrap.appendChild(btn)})});
+</script>
+</body></html>
